@@ -179,6 +179,7 @@ double clamp(double d, double min, double max) {
   return t > max ? max : t;
 }
 
+
 double torque = 0.0;
 double theta = 0;
 double priorTheta = 0;
@@ -193,64 +194,12 @@ double ENCODER_AND_MOTOR_OFFSET = 6.2;
 
 
 double testVal = 0;
-void mainLoop() {
-
-  // Update status led depending on rotation direction
-  updateLED(theta);
-
-  // Get user commands via serial
-  serialReadUpdate();
-
-  double output = (targetTheta - magEncoder.readAngleDegree()) * k_P + k_F * getSign(targetTheta - magEncoder.readAngleDegree());
-  // double output = (targetTheta - theta) * k_P;
-
-  Serial.print("Enc Degree: ");
-  Serial.print(magEncoder.readAngleDegree(), 5);
-
-  targetDeltaTheta = clamp(output, -1.57, 1.57);
-
-  // ramping deltaTheta (ramping how fast the velocity changes)
-  deltaTheta += getSign(targetDeltaTheta - deltaTheta) * 0.03;
-
-  if (fabs(targetDeltaTheta - deltaTheta) < 0.6) { deltaTheta = targetDeltaTheta; }
-
-  // First update theta to the actual theta depending on the mag encoder rotation
-
-  theta = (magEncoder.readAngleDegree() + ENCODER_AND_MOTOR_OFFSET) / (360.0 / 40.0) * M_PI;
-  Serial.print(" Elec Rad: ");
-  Serial.print(theta, 5);
-
-  Serial.print(" DelTheta: ");
-  Serial.println(deltaTheta);
-  // Add a delta theta so it rotates
-  // theta += deltaTheta;
-  theta += deltaTheta;
-
-
-  // Find the trig ratio for the output between 0 - 100%
-  double U_duty = sin(theta) * 50.0 + 50.0;
-  double V_duty = sin(theta + 120.0 * M_PI / 180.0) * 50.0 + 50.0;
-  double W_duty = sin(theta + 240.0 * M_PI / 180.0) * 50.0 + 50.0;
-
-  // estimating a linear torque curve
-  torque = clamp(torqueDeltaThetaRatio * fabs(deltaTheta) + 0.09, 0, 0.2);
-  // torque = 0.08;
-
-  // set Phase U
-  mcpwm_set_duty(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_A, (float)U_duty * torque);
-  // set phase V
-  mcpwm_set_duty(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_B, (float)V_duty * torque);
-  // set phase W
-  mcpwm_set_duty(MCPWM_UNIT_0, MCPWM_TIMER_1, MCPWM_OPR_A, (float)W_duty * torque);
-  
-
-
-}
-
 
 char cmd = ' ';
 char numbers[] = "aaaaaaaaaa";
 int numCounter = 0;
+
+
 
 void serialReadUpdate() {
   if (Serial.available() > 0) {
@@ -336,6 +285,61 @@ void serialReadUpdate() {
   }
 }
 
+
+
+void mainLoop() {
+
+  // Update status led depending on rotation direction
+  updateLED(theta);
+
+  // Get user commands via serial
+  serialReadUpdate();
+
+  double output = (targetTheta - magEncoder.readAngleDegree()) * k_P + k_F * getSign(targetTheta - magEncoder.readAngleDegree());
+  // double output = (targetTheta - theta) * k_P;
+
+  Serial.print("Enc Degree: ");
+  Serial.print(magEncoder.readAngleDegree(), 5);
+
+  targetDeltaTheta = clamp(output, -1.57, 1.57);
+
+  // ramping deltaTheta (ramping how fast the velocity changes)
+  deltaTheta += getSign(targetDeltaTheta - deltaTheta) * 0.03;
+
+  if (fabs(targetDeltaTheta - deltaTheta) < 0.6) { deltaTheta = targetDeltaTheta; }
+
+  // First update theta to the actual theta depending on the mag encoder rotation
+
+  theta = (magEncoder.readAngleDegree() + ENCODER_AND_MOTOR_OFFSET) / (360.0 / 40.0) * M_PI;
+  Serial.print(" Elec Rad: ");
+  Serial.print(theta, 5);
+
+  Serial.print(" DelTheta: ");
+  Serial.println(deltaTheta);
+  // Add a delta theta so it rotates
+  // theta += deltaTheta;
+  theta += deltaTheta;
+
+
+  // Find the trig ratio for the output between 0 - 100%
+  double U_duty = sin(theta) * 50.0 + 50.0;
+  double V_duty = sin(theta + 120.0 * M_PI / 180.0) * 50.0 + 50.0;
+  double W_duty = sin(theta + 240.0 * M_PI / 180.0) * 50.0 + 50.0;
+
+  // estimating a linear torque curve
+  torque = clamp(torqueDeltaThetaRatio * fabs(deltaTheta) + 0.09, 0, 0.2);
+  // torque = 0.08;
+
+  // set Phase U
+  mcpwm_set_duty(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_A, (float)U_duty * torque);
+  // set phase V
+  mcpwm_set_duty(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_B, (float)V_duty * torque);
+  // set phase W
+  mcpwm_set_duty(MCPWM_UNIT_0, MCPWM_TIMER_1, MCPWM_OPR_A, (float)W_duty * torque);
+  
+
+
+}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
