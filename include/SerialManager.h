@@ -21,5 +21,5 @@ class SerialManager {
     int numCounter = 0;
 
     double inputNumber = 0;
-    bool commandRead = true;
+    bool readyToRead = true;
 };

@@ -7,14 +7,12 @@ void SerialManager::init() {
 }
 
 void SerialManager::updateSerialInput() {
-    if (!commandRead) return;
+    if (!readyToRead) return;
 
     // For serial you have to read character by character
     // If there is no characters to read from Serial
     if (Serial.available() <= 0) {
         // reset the number array to be a default value
-        memset(numbers, 'a', sizeof(numbers));
-        numCounter = 0;
         return;
     }
 
@@ -45,14 +43,14 @@ void SerialManager::updateSerialInput() {
 
         inputNumber = atof(numbers);
 
-        commandRead = false; // prevents the updater from updating until the command is read
+        readyToRead = false; // prevents the updater from updating until the command is read
       }
     }
 }
 
 SerialCommand SerialManager::readSerialCommand() {
     // if the command has already been read then skip and return default vals
-    if (commandRead) return SerialCommand{.cmd = ' ', .value = 0.0 };
+    if (readyToRead) return SerialCommand{.cmd = ' ', .value = 0.0 };
 
     SerialCommand command;
     command.cmd = cmd;
@@ -60,7 +58,10 @@ SerialCommand SerialManager::readSerialCommand() {
     
     // Clear command, so that the serial updater will register the next command
     cmd = ' ';
-    commandRead = true;
+    readyToRead = true;
+
+    memset(numbers, 'a', sizeof(numbers));
+    numCounter = 0;
 
     return command;
 }

@@ -37,17 +37,56 @@
 #define STAT_1_LED_PIN 5
 #define STAT_2_LED_PIN 6
 
+// Motor Magnet Pole Count
+#define MAGNETIC_POLE_COUNTS 40
 
+  enum ControlMode {
+    IDLE,
+    OPEN_LOOP_PERCENT_OUTPUT,
+    OPEN_LOOP_ELECTRICAL_POSITION,
+    CLOSED_LOOP_PERCENT_OUTPUT
+  };
 
 class MotorController {
   public:
 
+
+
     MotorController();
     void init(); // Sets up the board pins to the correct INPUT / OUTPUT
+    void update(); // this needs to be in the main loop for the motor to update and spin
     void setDriverEnable(bool enable);
+    void setIdle(); // puts the driver into idle mode
+    void openLoopPercentageOutput(double percentOutput); // uses SVPWM with no feedback loop from mag encoder
+    void setOpenLoopPosition(double position, bool physicalShaftPos = false);
+
+    double* getTestValue() { return &testValue; }
 
   private: 
     void setPhasePercentOutput(double uDutyPercent, double vDutyPercent, double wDutyPercent);
-  
+    void svpwmCommutation();
 
+    double mapf(double x, double in_min, double in_max, double out_min, double out_max) {
+      return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+    };
+    double clamp(double d, double min, double max) {
+      const double t = d < min ? min : d;
+      return t > max ? max : t;
+    }
+
+    
+    ControlMode m_currentControlMode = ControlMode::IDLE;
+
+    double m_electricalTheta = 0.0; // degrees for electrical theta state not physical
+    double m_electricalThetaStep = 0.0; // This depicts how much the theta steps to rotate the motor
+
+    double const deltaElectricalThetaStep_KP = 0.001; // KP values used for the acceleration of the motor
+
+    double m_percentageOutput = 0.0; 
+
+    // Used by OPEN_LOOP_ELECTRICAL_POSITION control mode
+    double m_targetElectricalPosition = 0.0;
+
+    // test value that can be adjusted in real time by serial
+    double testValue = 0.001;
 };

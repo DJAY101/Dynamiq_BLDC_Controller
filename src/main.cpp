@@ -20,7 +20,7 @@
 #include <AS5047P.h>
 
 // Other Constants
-#define CPU_FREQ_MHZ 80
+#define CPU_FREQ_MHZ 160
 
 #define PWM_FREQ 16384
 #define PWM_RES 11
@@ -37,6 +37,8 @@ AS5047P magEncoder(ENCODER_CSN, AS5047P_CUSTOM_SPI_BUS_SPEED);
 // init my motor drivers and serial manager
 MotorController* m_motorController = new MotorController();
 SerialManager* m_serialManager = new SerialManager();
+
+bool disableSerialInput = false;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -131,22 +133,23 @@ void executeSerialCommand(SerialManager* serialManager) {
         break;
     case 'd':
         Serial.println("Driver Disabled");
-        m_motorController->setDriverEnable(false);
-        break;
-    case 't':
-        Serial.print("Set torque to: ");
-        Serial.println(userCommand.value);
-        torque = userCommand.value;
+        m_motorController->setIdle();
         break;
     case 'p':
         Serial.print("Position set to: ");
         Serial.println(userCommand.value, 5);
-        // targetTheta = userNumber * 40 / 360 * M_PI;
-        targetTheta = userCommand.value;
+        m_motorController->setOpenLoopPosition(userCommand.value, true);
         break;
-    case 'a':
-        
-        k_P = userCommand.value;
+    case 't':
+         *m_motorController->getTestValue() = userCommand.value;
+        break;
+    case 'o':
+        Serial.println("Percentage Output Mode Enabled");
+        m_motorController->openLoopPercentageOutput(userCommand.value);
+        break;
+    case 'z':
+        Serial.println("Serial Input Disabled...");
+        disableSerialInput = true;
         break;
     default: // optional
         Serial.println("No matching cmd");
@@ -154,54 +157,54 @@ void executeSerialCommand(SerialManager* serialManager) {
 }
 
 
-void mainLoop() {
+// void mainLoop() {
 
-  // Update status led depending on rotation direction
-  updateLED(theta);
+//   // Update status led depending on rotation direction
+//   updateLED(theta);
 
-  double output = (targetTheta - magEncoder.readAngleDegree()) * k_P + k_F * getSign(targetTheta - magEncoder.readAngleDegree());
-  // double output = (targetTheta - theta) * k_P;
+//   double output = (targetTheta - magEncoder.readAngleDegree()) * k_P + k_F * getSign(targetTheta - magEncoder.readAngleDegree());
+//   // double output = (targetTheta - theta) * k_P;
 
-  // Serial.print("Enc Degree: ");
-  // Serial.print(magEncoder.readAngleDegree(), 5);
+//   // Serial.print("Enc Degree: ");
+//   // Serial.print(magEncoder.readAngleDegree(), 5);
 
-  targetDeltaTheta = clamp(output, -1.57, 1.57);
+//   targetDeltaTheta = clamp(output, -1.57, 1.57);
 
-  // ramping deltaTheta (ramping how fast the velocity changes)
-  deltaTheta += getSign(targetDeltaTheta - deltaTheta) * 0.03;
+//   // ramping deltaTheta (ramping how fast the velocity changes)
+//   deltaTheta += getSign(targetDeltaTheta - deltaTheta) * 0.03;
 
-  if (fabs(targetDeltaTheta - deltaTheta) < 0.6) { deltaTheta = targetDeltaTheta; }
+//   if (fabs(targetDeltaTheta - deltaTheta) < 0.6) { deltaTheta = targetDeltaTheta; }
 
-  // First update theta to the actual theta depending on the mag encoder rotation
+//   // First update theta to the actual theta depending on the mag encoder rotation
 
-  theta = (magEncoder.readAngleDegree() + ENCODER_AND_MOTOR_OFFSET) / (360.0 / 40.0) * M_PI;
-  // Serial.print(" Elec Rad: ");
-  // Serial.print(theta, 5);
+//   theta = (magEncoder.readAngleDegree() + ENCODER_AND_MOTOR_OFFSET) / (360.0 / 40.0) * M_PI;
+//   // Serial.print(" Elec Rad: ");
+//   // Serial.print(theta, 5);
 
-  // Serial.print(" DelTheta: ");
-  // Serial.println(deltaTheta);
-  // Add a delta theta so it rotates
-  // theta += deltaTheta;
-  theta += deltaTheta;
+//   // Serial.print(" DelTheta: ");
+//   // Serial.println(deltaTheta);
+//   // Add a delta theta so it rotates
+//   // theta += deltaTheta;
+//   theta += deltaTheta;
 
 
-  // Find the trig ratio for the output between 0 - 100%
-  double U_duty = sin(theta) * 50.0 + 50.0;
-  double V_duty = sin(theta + 120.0 * M_PI / 180.0) * 50.0 + 50.0;
-  double W_duty = sin(theta + 240.0 * M_PI / 180.0) * 50.0 + 50.0;
+//   // Find the trig ratio for the output between 0 - 100%
+//   double U_duty = sin(theta) * 50.0 + 50.0;
+//   double V_duty = sin(theta + 120.0 * M_PI / 180.0) * 50.0 + 50.0;
+//   double W_duty = sin(theta + 240.0 * M_PI / 180.0) * 50.0 + 50.0;
 
-  // estimating a linear torque curve
-  torque = clamp(torqueDeltaThetaRatio * fabs(deltaTheta) + 0.09, 0, 0.2);
-  // torque = 0.08;
+//   // estimating a linear torque curve
+//   torque = clamp(torqueDeltaThetaRatio * fabs(deltaTheta) + 0.09, 0, 0.2);
+//   // torque = 0.08;
 
-  // set Phase U
-  mcpwm_set_duty(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_A, (float)U_duty * torque);
-  // set phase V
-  mcpwm_set_duty(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_B, (float)V_duty * torque);
-  // set phase W
-  mcpwm_set_duty(MCPWM_UNIT_0, MCPWM_TIMER_1, MCPWM_OPR_A, (float)W_duty * torque);
+//   // set Phase U
+//   mcpwm_set_duty(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_A, (float)U_duty * torque);
+//   // set phase V
+//   mcpwm_set_duty(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_B, (float)V_duty * torque);
+//   // set phase W
+//   mcpwm_set_duty(MCPWM_UNIT_0, MCPWM_TIMER_1, MCPWM_OPR_A, (float)W_duty * torque);
 
-}
+// }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -233,16 +236,18 @@ void setup() {
 
 bool lipoThresholdHit = false;
 void loop() {
+  m_motorController->update();
+  if (!disableSerialInput) {
+    m_serialManager->updateSerialInput();
+  }
+  executeSerialCommand(m_serialManager);
 
   // Lipo protection if statement
   if (getLipoVoltage() < LIPO_DISABLE_VOLTAGE || lipoThresholdHit) {
     lipoThresholdHit = true;
     digitalWrite(LIPO_LED_PIN, HIGH);
     m_motorController->setDriverEnable(false);
+    m_motorController->setIdle();
     Serial.println("Lipo Voltage Threshold hit");
-  } else {
-    m_serialManager->updateSerialInput();
-    executeSerialCommand(m_serialManager);
-    mainLoop();
   }
 }
