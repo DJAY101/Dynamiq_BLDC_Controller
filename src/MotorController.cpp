@@ -51,8 +51,8 @@ void MotorController::init() {
     
     mcpwm_sync_configure(MCPWM_UNIT_0, MCPWM_TIMER_1, &sync_config);
     mcpwm_set_timer_sync_output(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_SWSYNC_SOURCE_TEZ); // Setup an sync signal from timer 0
-
 }
+
 
 void MotorController::setDriverEnable(bool enable) {
   if (enable) {
@@ -73,7 +73,7 @@ void MotorController::setDriverEnable(bool enable) {
 }
 
 void MotorController::setPhasePercentOutput(double uDutyPercent, double vDutyPercent, double wDutyPercent) {
-  const double SAFETY_MAX_DUTY = 30;
+  const double SAFETY_MAX_DUTY = 31;
   // Driver protection, if it exceeds this duty cycle the driver doesnt like it and faults :(
   if (uDutyPercent >= SAFETY_MAX_DUTY || vDutyPercent >= SAFETY_MAX_DUTY || wDutyPercent >= SAFETY_MAX_DUTY) {
     Serial.println("MAX PHASE DUTY EXCEEDED");
@@ -97,6 +97,21 @@ void MotorController::openLoopPercentageOutput(double percentOutput) {
   m_percentageOutput = percentOutput;
 }
 
+void MotorController::closedLoopPercentageOutput(double percentOutput) {
+  if (percentOutput == 0) {
+    setIdle();
+    return;
+  }
+  m_currentControlMode = ControlMode::CLOSED_LOOP_PERCENT_OUTPUT;
+  m_percentageOutput = percentOutput;
+}
+
+void MotorController::setClosedLoopPosition(double position) {
+  m_currentControlMode = ControlMode::CLOSED_LOOP_POSITION;
+  m_targetPosition = position;
+}
+
+
 void MotorController::setIdle() {
   setDriverEnable(false);
   setPhasePercentOutput(0, 0, 0);
@@ -114,6 +129,8 @@ void MotorController::setOpenLoopPosition(double position, bool physicalShaftPos
   m_targetElectricalPosition = position;
 }
 
+
+// open loop svpwmCommutation
 void MotorController::svpwmCommutation() {
 
   m_percentageOutput = clamp(m_percentageOutput, -100.0, 100.0);
@@ -141,9 +158,59 @@ void MotorController::svpwmCommutation() {
 
   // assumes the electrical theta is now at the target (hence open loop control)
   m_electricalTheta = targetElectricalTheta;
+  
+  // Serial.print(">CA:");
+  // Serial.println(fmod((m_encoderAngle * MAGNETIC_POLE_COUNTS / 2.0) + 145, 360), 4);
+
+  // Serial.print(">EA:");
+  // Serial.println(fmod(m_electricalTheta * 180.0 / M_PI, 360.0), 4);
 }
 
-void MotorController::update() {
+
+// Closed loop encoder based electrical theta commutation
+void MotorController::svpwmEncoderCommutation() {
+
+  // clamp the percentage output between -100 and 100
+  m_percentageOutput = clamp(m_percentageOutput, -100.0, 100.0);
+  
+
+  // Ramping so that the torque doesnt change instantly causing high current spikes
+  double targetTorque = mapf(m_percentageOutput, -100, 100, -0.20, 0.20);
+  
+  m_torque += (targetTorque - m_torque) * 0.003;
+  if (fabs(targetTorque - m_torque) < 0.01) {
+    m_torque = targetTorque;
+  }
+
+  // Set the electrical theta to the actual position taken from the encoder (closed loopiness comes in)
+  const double angleOffset = 130.0;
+  m_electricalTheta = fmod((m_encoderAngle * MAGNETIC_POLE_COUNTS / 2.0) + angleOffset, 360) * M_PI / 180.0; 
+
+  // The theta step should be 90 degrees from the magnet to ensure maximum torque and the direction depends on the torque sign
+  m_electricalThetaStep = (m_torque >= 0) ? M_PI/2 : -M_PI/2;
+
+  // sets the target electrical theta with the 90 degrees offset
+  double targetElectricalTheta = m_electricalTheta + m_electricalThetaStep;
+
+  // Find the trig ratio for the output between 0 - 100%
+  double U_duty = sin(targetElectricalTheta) * 50.0 + 50.0;
+  double V_duty = sin(targetElectricalTheta + 120.0 * M_PI / 180.0) * 50.0 + 50.0;
+  double W_duty = sin(targetElectricalTheta + 240.0 * M_PI / 180.0) * 50.0 + 50.0;
+
+  double absoluteTorque = fabs(m_torque) + 0.02;
+
+  // Set the phase with the output above
+  setPhasePercentOutput(U_duty * absoluteTorque, V_duty * absoluteTorque, W_duty * absoluteTorque);
+}
+
+
+
+void MotorController::update(double encAngle) {
+  m_encoderAngle = encAngle;
+
+  // Serial.print(">Encoder Angle:");
+  // Serial.println(m_encoderAngle, 4);
+
   if (m_currentControlMode == ControlMode::IDLE) return; // Do nothing if its in the idle state
 
   // Utilise svpwmCommutation if its open loop control
@@ -151,8 +218,23 @@ void MotorController::update() {
     svpwmCommutation();
   }
 
+  if (m_currentControlMode == ControlMode::CLOSED_LOOP_PERCENT_OUTPUT) {
+    svpwmEncoderCommutation();
+  }
+
   if (m_currentControlMode == ControlMode::OPEN_LOOP_ELECTRICAL_POSITION) {
-    m_percentageOutput = (m_targetElectricalPosition - m_electricalTheta) * testValue;
+    m_percentageOutput = (m_targetElectricalPosition - m_electricalTheta) * 0.9;
     svpwmCommutation();
   }
+
+  if (m_currentControlMode == ControlMode::CLOSED_LOOP_POSITION) {
+    double error = (m_targetPosition - m_encoderAngle);
+    m_percentageOutput = getSign(error) + error * 0.6;
+    if (fabs(error) > 2) {
+      Serial.println(m_encoderAngle);
+    }
+
+    svpwmEncoderCommutation();
+  }
+
 }
