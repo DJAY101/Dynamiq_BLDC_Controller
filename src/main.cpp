@@ -26,7 +26,7 @@
 #define PWM_RES 11
 
 // define the spi bus speed for mag encoder
-#define AS5047P_CUSTOM_SPI_BUS_SPEED 5000000 // 1Mhz
+#define AS5047P_CUSTOM_SPI_BUS_SPEED 8000000 // 1Mhz
 
 #define LIPO_DISABLE_VOLTAGE 14.0
 

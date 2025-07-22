@@ -231,6 +231,7 @@ void MotorController::update(double encAngle) {
     double error = (m_targetPosition - m_encoderAngle);
     m_percentageOutput = getSign(error) + error * 0.6;
     if (fabs(error) > 2) {
+      Serial.print(">Angle:");
       Serial.println(m_encoderAngle);
     }
 
