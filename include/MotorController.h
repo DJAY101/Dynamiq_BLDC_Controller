@@ -44,7 +44,8 @@
     IDLE,
     OPEN_LOOP_PERCENT_OUTPUT,
     OPEN_LOOP_ELECTRICAL_POSITION,
-    CLOSED_LOOP_PERCENT_OUTPUT
+    CLOSED_LOOP_PERCENT_OUTPUT,
+    CLOSED_LOOP_POSITION
   };
 
 class MotorController {
@@ -54,17 +55,20 @@ class MotorController {
 
     MotorController();
     void init(); // Sets up the board pins to the correct INPUT / OUTPUT
-    void update(); // this needs to be in the main loop for the motor to update and spin
+    void update(double encAngle); // this needs to be in the main loop for the motor to update and spin
     void setDriverEnable(bool enable);
     void setIdle(); // puts the driver into idle mode
     void openLoopPercentageOutput(double percentOutput); // uses SVPWM with no feedback loop from mag encoder
     void setOpenLoopPosition(double position, bool physicalShaftPos = false);
+    void closedLoopPercentageOutput(double percentOutput); // Using encoder feedback to update the electrical theta
+    void setClosedLoopPosition(double position);
 
     double* getTestValue() { return &testValue; }
 
   private: 
     void setPhasePercentOutput(double uDutyPercent, double vDutyPercent, double wDutyPercent);
     void svpwmCommutation();
+    void svpwmEncoderCommutation();
 
     double mapf(double x, double in_min, double in_max, double out_min, double out_max) {
       return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
@@ -72,6 +76,10 @@ class MotorController {
     double clamp(double d, double min, double max) {
       const double t = d < min ? min : d;
       return t > max ? max : t;
+    }
+    double getSign(double num) {
+      if (num == 0) return 0;
+      if (num > 0) { return 1.0; } else { return -1.0; }
     }
 
     
@@ -87,6 +95,13 @@ class MotorController {
     // Used by OPEN_LOOP_ELECTRICAL_POSITION control mode
     double m_targetElectricalPosition = 0.0;
 
+    // Used by CLOSED_LOOP_POSITION control mode
+    double m_targetPosition = 0.0;
+
+    double m_encoderAngle = 0.0;
+
+    double m_torque = 0.0;
+
     // test value that can be adjusted in real time by serial
-    double testValue = 0.001;
+    double testValue = 145;
 };
