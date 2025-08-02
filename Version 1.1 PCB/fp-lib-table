@@ -1,0 +1,4 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "Project_BLDC_Foorprint_Library")(type "KiCad")(uri "${KIPRJMOD}/Project_BLDC_Foorprint_Library.pretty")(options "")(descr ""))
+)
