@@ -252,7 +252,7 @@
 		)
 		(embedded_fonts no)
 	)
-	(symbol "8x_Male_Headers"
+	(symbol "2x4_Male_Headers"
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
@@ -299,7 +299,7 @@
 				(hide yes)
 			)
 		)
-		(symbol "8x_Male_Headers_0_1"
+		(symbol "2x4_Male_Headers_0_1"
 			(rectangle
 				(start -2.54 3.81)
 				(end 2.54 -6.35)
@@ -448,7 +448,7 @@
 				)
 			)
 		)
-		(symbol "8x_Male_Headers_1_1"
+		(symbol "2x4_Male_Headers_1_1"
 			(pin bidirectional line
 				(at -5.08 2.54 0)
 				(length 2.54)

@@ -562,8 +562,20 @@
         },
         {
           "group_by": false,
+          "label": "Sim.Device",
+          "name": "Sim.Device",
+          "show": false
+        },
+        {
+          "group_by": false,
           "label": "Sim.Pins",
           "name": "Sim.Pins",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Sim.Type",
+          "name": "Sim.Type",
           "show": false
         },
         {
@@ -648,6 +660,10 @@
     [
       "2a3b40aa-b3f2-4df0-a1f7-1e81678567cb",
       "Gate Driver"
+    ],
+    [
+      "9141800d-4930-4d5a-9814-8988f4eae185",
+      "Connectors"
     ]
   ],
   "text_variables": {}

@@ -1,4 +1,4 @@
-25726987440279430
+25734012073455261
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -90489,6 +90489,13 @@ Potentiometer vertical vishay
 3
 3
 Project_BLDC_Foorprint_Library
+1x3 Male Headers
+
+
+0
+3
+3
+Project_BLDC_Foorprint_Library
 1x6 Male Headers
 
 
@@ -103124,12 +103131,33 @@ SMA_L4.3-W2.6-LS5.2-RD
 2
 2
 easyeda2kicad
+SMA_L4.4-W2.8-LS5.1-BI
+
+
+0
+2
+2
+easyeda2kicad
 SOT-23-3_L3.0-W1.7-P0.95-LS2.9-BR
 
 
 0
 3
 3
+easyeda2kicad
+SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BL
+
+
+0
+6
+6
+easyeda2kicad
+SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR
+
+
+0
+6
+6
 easyeda2kicad
 SW-SMD_4P-L5.2-W5.2-P3.70-LS6.5
 
