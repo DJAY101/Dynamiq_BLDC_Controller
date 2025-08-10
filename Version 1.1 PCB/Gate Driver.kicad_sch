@@ -3861,7 +3861,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "07876fd5-2212-414d-86e3-29a28863a063")
-		(property "Reference" "TP?"
+		(property "Reference" "TP12"
 			(at 39.37 152.3999 90)
 			(effects
 				(font
@@ -3879,7 +3879,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "TestPoint:TestPoint_Pad_D2.0mm"
 			(at 34.29 158.75 0)
 			(effects
 				(font
@@ -3906,13 +3906,29 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 34.29 153.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Type" ""
+			(at 34.29 153.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "03076390-02d1-4fdf-8f71-a2d6ee7fb664")
 		)
 		(instances
 			(project "BLDC_Version1_1_0"
 				(path "/1ef2c161-9706-454e-ac1f-db9f896ae7e0/2a3b40aa-b3f2-4df0-a1f7-1e81678567cb"
-					(reference "TP?")
+					(reference "TP12")
 					(unit 1)
 				)
 			)
@@ -3995,7 +4011,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "1431ecd4-473b-4c11-8eb5-d7ad9806f589")
-		(property "Reference" "JP?"
+		(property "Reference" "JP3"
 			(at 34.29 88.9 0)
 			(effects
 				(font
@@ -4038,6 +4054,22 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 34.29 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Type" ""
+			(at 34.29 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "d70114d2-8d4d-48d2-8122-38d9e9be80e9")
 		)
@@ -4047,7 +4079,7 @@
 		(instances
 			(project "BLDC_Version1_1_0"
 				(path "/1ef2c161-9706-454e-ac1f-db9f896ae7e0/2a3b40aa-b3f2-4df0-a1f7-1e81678567cb"
-					(reference "JP?")
+					(reference "JP3")
 					(unit 1)
 				)
 			)
@@ -4129,7 +4161,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "1fa13b0a-1935-4088-8961-d0dd4fe5bea6")
-		(property "Reference" "C?"
+		(property "Reference" "C23"
 			(at 106.934 135.382 0)
 			(effects
 				(font
@@ -4147,7 +4179,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 115.2652 139.7 0)
 			(effects
 				(font
@@ -4174,6 +4206,22 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 114.3 135.89 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Type" ""
+			(at 114.3 135.89 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "7c7078c8-d627-495c-aa70-85f11d1fe0e9")
 		)
@@ -4183,7 +4231,7 @@
 		(instances
 			(project ""
 				(path "/1ef2c161-9706-454e-ac1f-db9f896ae7e0/2a3b40aa-b3f2-4df0-a1f7-1e81678567cb"
-					(reference "C?")
+					(reference "C23")
 					(unit 1)
 				)
 			)
@@ -4198,7 +4246,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "245ad919-ed18-4d2c-8e9b-86056e42bd57")
-		(property "Reference" "R?"
+		(property "Reference" "R20"
 			(at 48.26 85.344 90)
 			(effects
 				(font
@@ -4214,7 +4262,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 48.26 84.328 90)
 			(effects
 				(font
@@ -4241,6 +4289,22 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 48.26 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Type" ""
+			(at 48.26 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "2"
 			(uuid "c6ccf85d-91e1-426f-af0e-25fd17780bfd")
 		)
@@ -4250,7 +4314,7 @@
 		(instances
 			(project "BLDC_Version1_1_0"
 				(path "/1ef2c161-9706-454e-ac1f-db9f896ae7e0/2a3b40aa-b3f2-4df0-a1f7-1e81678567cb"
-					(reference "R?")
+					(reference "R20")
 					(unit 1)
 				)
 			)
@@ -4265,7 +4329,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "24c58e2c-9cab-4ac5-840f-7ecc5a1e626b")
-		(property "Reference" "C?"
+		(property "Reference" "C27"
 			(at 259.588 52.832 0)
 			(effects
 				(font
@@ -4283,7 +4347,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 256.2352 57.15 0)
 			(effects
 				(font
@@ -4310,6 +4374,22 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 255.27 53.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Type" ""
+			(at 255.27 53.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "f856188e-986e-42fb-b01d-73c994cd2cd9")
 		)
@@ -4319,7 +4399,7 @@
 		(instances
 			(project "BLDC_Version1_1_0"
 				(path "/1ef2c161-9706-454e-ac1f-db9f896ae7e0/2a3b40aa-b3f2-4df0-a1f7-1e81678567cb"
-					(reference "C?")
+					(reference "C27")
 					(unit 1)
 				)
 			)
@@ -4334,7 +4414,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "288bfeeb-7de1-4ac7-a2c8-7a44f876dc10")
-		(property "Reference" "C?"
+		(property "Reference" "C20"
 			(at 86.614 75.692 0)
 			(effects
 				(font
@@ -4352,7 +4432,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 94.9452 80.01 0)
 			(effects
 				(font
@@ -4379,6 +4459,22 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 93.98 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Type" ""
+			(at 93.98 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "52ef3bb6-126b-4f1a-ad7b-2ff6bda259d4")
 		)
@@ -4388,7 +4484,7 @@
 		(instances
 			(project "BLDC_Version1_1_0"
 				(path "/1ef2c161-9706-454e-ac1f-db9f896ae7e0/2a3b40aa-b3f2-4df0-a1f7-1e81678567cb"
-					(reference "C?")
+					(reference "C20")
 					(unit 1)
 				)
 			)
@@ -4404,7 +4500,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "33d8c677-432e-4463-836d-6e2ffc9aa574")
-		(property "Reference" "R?"
+		(property "Reference" "R27"
 			(at 125.73 134.6199 0)
 			(effects
 				(font
@@ -4422,7 +4518,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 121.412 135.89 90)
 			(effects
 				(font
@@ -4449,6 +4545,22 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 123.19 135.89 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Type" ""
+			(at 123.19 135.89 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "2"
 			(uuid "14350103-11da-4491-8b27-4c75f7528f73")
 		)
@@ -4458,7 +4570,7 @@
 		(instances
 			(project ""
 				(path "/1ef2c161-9706-454e-ac1f-db9f896ae7e0/2a3b40aa-b3f2-4df0-a1f7-1e81678567cb"
-					(reference "R?")
+					(reference "R27")
 					(unit 1)
 				)
 			)
@@ -4607,7 +4719,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "45f39139-e74c-412b-b7e8-1856da6f69c6")
-		(property "Reference" "TP?"
+		(property "Reference" "TP11"
 			(at 39.37 149.8599 90)
 			(effects
 				(font
@@ -4625,7 +4737,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "TestPoint:TestPoint_Pad_D2.0mm"
 			(at 34.29 156.21 0)
 			(effects
 				(font
@@ -4652,13 +4764,29 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 34.29 151.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Type" ""
+			(at 34.29 151.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "af4befb7-7a7b-4856-a47c-bea0fee12e60")
 		)
 		(instances
 			(project "BLDC_Version1_1_0"
 				(path "/1ef2c161-9706-454e-ac1f-db9f896ae7e0/2a3b40aa-b3f2-4df0-a1f7-1e81678567cb"
-					(reference "TP?")
+					(reference "TP11")
 					(unit 1)
 				)
 			)
@@ -4673,7 +4801,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "476963f7-0057-410e-bf12-f919f437e3c9")
-		(property "Reference" "TP?"
+		(property "Reference" "TP8"
 			(at 39.37 142.2399 90)
 			(effects
 				(font
@@ -4691,7 +4819,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "TestPoint:TestPoint_Pad_D2.0mm"
 			(at 34.29 148.59 0)
 			(effects
 				(font
@@ -4718,13 +4846,29 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 34.29 143.51 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Type" ""
+			(at 34.29 143.51 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "2c776e26-6904-40c7-a14b-e90fb2ee247f")
 		)
 		(instances
 			(project ""
 				(path "/1ef2c161-9706-454e-ac1f-db9f896ae7e0/2a3b40aa-b3f2-4df0-a1f7-1e81678567cb"
-					(reference "TP?")
+					(reference "TP8")
 					(unit 1)
 				)
 			)
@@ -4739,7 +4883,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "47af276c-1372-4184-8da3-af8cb5633e94")
-		(property "Reference" "C?"
+		(property "Reference" "C22"
 			(at 91.694 108.712 0)
 			(effects
 				(font
@@ -4757,7 +4901,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 100.0252 113.03 0)
 			(effects
 				(font
@@ -4784,6 +4928,22 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 99.06 109.22 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Type" ""
+			(at 99.06 109.22 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "70550bbe-eace-4589-8206-962189488869")
 		)
@@ -4793,7 +4953,7 @@
 		(instances
 			(project "BLDC_Version1_1_0"
 				(path "/1ef2c161-9706-454e-ac1f-db9f896ae7e0/2a3b40aa-b3f2-4df0-a1f7-1e81678567cb"
-					(reference "C?")
+					(reference "C22")
 					(unit 1)
 				)
 			)
@@ -4875,7 +5035,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "5924002c-26f1-40b0-8fa3-de9e4d7d8fdc")
-		(property "Reference" "TP?"
+		(property "Reference" "TP10"
 			(at 39.37 147.3199 90)
 			(effects
 				(font
@@ -4893,7 +5053,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "TestPoint:TestPoint_Pad_D2.0mm"
 			(at 34.29 153.67 0)
 			(effects
 				(font
@@ -4920,13 +5080,29 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 34.29 148.59 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Type" ""
+			(at 34.29 148.59 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "d8643cee-0f91-4885-9191-e11dbe80a730")
 		)
 		(instances
 			(project "BLDC_Version1_1_0"
 				(path "/1ef2c161-9706-454e-ac1f-db9f896ae7e0/2a3b40aa-b3f2-4df0-a1f7-1e81678567cb"
-					(reference "TP?")
+					(reference "TP10")
 					(unit 1)
 				)
 			)
@@ -4942,7 +5118,7 @@
 		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "6be9bf09-b5de-45c1-9ecb-5d10c7639e8a")
-		(property "Reference" "C?"
+		(property "Reference" "C19"
 			(at 80.01 171.4499 0)
 			(effects
 				(font
@@ -4987,6 +5163,22 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 76.2 172.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Type" ""
+			(at 76.2 172.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "760ae4fb-f906-464d-bda6-24681b2b6ab9")
 		)
@@ -4996,7 +5188,7 @@
 		(instances
 			(project "BLDC_Version1_1_0"
 				(path "/1ef2c161-9706-454e-ac1f-db9f896ae7e0/2a3b40aa-b3f2-4df0-a1f7-1e81678567cb"
-					(reference "C?")
+					(reference "C19")
 					(unit 1)
 				)
 			)
@@ -5012,7 +5204,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "70c812de-bfd8-46cc-9013-90fd62a08c53")
-		(property "Reference" "JP?"
+		(property "Reference" "JP1"
 			(at 34.29 57.15 0)
 			(effects
 				(font
@@ -5055,6 +5247,22 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 34.29 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Type" ""
+			(at 34.29 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "8a94fb02-d3c0-436c-b709-b0f493e0a273")
 		)
@@ -5064,7 +5272,7 @@
 		(instances
 			(project ""
 				(path "/1ef2c161-9706-454e-ac1f-db9f896ae7e0/2a3b40aa-b3f2-4df0-a1f7-1e81678567cb"
-					(reference "JP?")
+					(reference "JP1")
 					(unit 1)
 				)
 			)
@@ -5146,7 +5354,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "7ba3910f-7b76-4eba-a159-7110597963cb")
-		(property "Reference" "C?"
+		(property "Reference" "C17"
 			(at 38.354 36.322 0)
 			(effects
 				(font
@@ -5164,7 +5372,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 46.6852 40.64 0)
 			(effects
 				(font
@@ -5191,6 +5399,22 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 45.72 36.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Type" ""
+			(at 45.72 36.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "e6d0b64d-a5e2-48bf-b17b-08c764260c52")
 		)
@@ -5200,7 +5424,7 @@
 		(instances
 			(project "BLDC_Version1_1_0"
 				(path "/1ef2c161-9706-454e-ac1f-db9f896ae7e0/2a3b40aa-b3f2-4df0-a1f7-1e81678567cb"
-					(reference "C?")
+					(reference "C17")
 					(unit 1)
 				)
 			)
@@ -5215,7 +5439,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "7c1281d9-1278-4495-a1a4-19c77bd49c65")
-		(property "Reference" "R?"
+		(property "Reference" "R19"
 			(at 48.26 70.104 90)
 			(effects
 				(font
@@ -5231,7 +5455,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 48.26 69.088 90)
 			(effects
 				(font
@@ -5258,6 +5482,22 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 48.26 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Type" ""
+			(at 48.26 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "2"
 			(uuid "05137854-1940-4f98-8e04-c3e36622d2ac")
 		)
@@ -5267,7 +5507,7 @@
 		(instances
 			(project "BLDC_Version1_1_0"
 				(path "/1ef2c161-9706-454e-ac1f-db9f896ae7e0/2a3b40aa-b3f2-4df0-a1f7-1e81678567cb"
-					(reference "R?")
+					(reference "R19")
 					(unit 1)
 				)
 			)
@@ -5282,7 +5522,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "82bb17ea-dd0e-423f-9f1b-78133866d20e")
-		(property "Reference" "TP?"
+		(property "Reference" "TP15"
 			(at 87.63 163.8299 90)
 			(effects
 				(font
@@ -5327,13 +5567,29 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 82.55 165.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Type" ""
+			(at 82.55 165.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "219a7356-29b5-4047-b2cf-2d709469287e")
 		)
 		(instances
 			(project "BLDC_Version1_1_0"
 				(path "/1ef2c161-9706-454e-ac1f-db9f896ae7e0/2a3b40aa-b3f2-4df0-a1f7-1e81678567cb"
-					(reference "TP?")
+					(reference "TP15")
 					(unit 1)
 				)
 			)
@@ -5348,7 +5604,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "82d2f064-524a-4879-8f23-52d131e8ddf4")
-		(property "Reference" "C?"
+		(property "Reference" "C28"
 			(at 250.444 27.432 0)
 			(effects
 				(font
@@ -5366,7 +5622,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 258.7752 31.75 0)
 			(effects
 				(font
@@ -5393,6 +5649,22 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 257.81 27.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Type" ""
+			(at 257.81 27.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "4fe3ad34-3d4a-4076-b95e-190458b6b282")
 		)
@@ -5402,7 +5674,7 @@
 		(instances
 			(project "BLDC_Version1_1_0"
 				(path "/1ef2c161-9706-454e-ac1f-db9f896ae7e0/2a3b40aa-b3f2-4df0-a1f7-1e81678567cb"
-					(reference "C?")
+					(reference "C28")
 					(unit 1)
 				)
 			)
@@ -5484,7 +5756,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "8b178372-f098-46d5-b934-9531dc9b9c70")
-		(property "Reference" "R?"
+		(property "Reference" "R21"
 			(at 48.26 101.854 90)
 			(effects
 				(font
@@ -5500,7 +5772,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 48.26 100.838 90)
 			(effects
 				(font
@@ -5527,6 +5799,22 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 48.26 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Type" ""
+			(at 48.26 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "2"
 			(uuid "7a0e5f01-f942-4e05-ac18-1824a9739d93")
 		)
@@ -5536,7 +5824,7 @@
 		(instances
 			(project "BLDC_Version1_1_0"
 				(path "/1ef2c161-9706-454e-ac1f-db9f896ae7e0/2a3b40aa-b3f2-4df0-a1f7-1e81678567cb"
-					(reference "R?")
+					(reference "R21")
 					(unit 1)
 				)
 			)
@@ -5552,7 +5840,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "92911566-d113-4977-b88e-95874c7b0917")
-		(property "Reference" "R?"
+		(property "Reference" "R25"
 			(at 57.15 35.5599 0)
 			(effects
 				(font
@@ -5570,7 +5858,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 52.832 36.83 90)
 			(effects
 				(font
@@ -5597,6 +5885,22 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 54.61 36.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Type" ""
+			(at 54.61 36.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "2"
 			(uuid "9b228dc8-d2d3-458c-8b9d-580506e421b2")
 		)
@@ -5606,7 +5910,7 @@
 		(instances
 			(project "BLDC_Version1_1_0"
 				(path "/1ef2c161-9706-454e-ac1f-db9f896ae7e0/2a3b40aa-b3f2-4df0-a1f7-1e81678567cb"
-					(reference "R?")
+					(reference "R25")
 					(unit 1)
 				)
 			)
@@ -5622,7 +5926,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "97f55a2d-6ba7-4d41-a71c-b280265d0f62")
-		(property "Reference" "R?"
+		(property "Reference" "R24"
 			(at 57.15 22.8599 0)
 			(effects
 				(font
@@ -5640,7 +5944,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 52.832 24.13 90)
 			(effects
 				(font
@@ -5667,6 +5971,22 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 54.61 24.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Type" ""
+			(at 54.61 24.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "2"
 			(uuid "b4fb4ef0-6314-4a57-a355-7ae96f75a190")
 		)
@@ -5676,7 +5996,7 @@
 		(instances
 			(project "BLDC_Version1_1_0"
 				(path "/1ef2c161-9706-454e-ac1f-db9f896ae7e0/2a3b40aa-b3f2-4df0-a1f7-1e81678567cb"
-					(reference "R?")
+					(reference "R24")
 					(unit 1)
 				)
 			)
@@ -5692,7 +6012,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "9841669e-16d4-44ea-a771-cf3d827d8f66")
-		(property "Reference" "R?"
+		(property "Reference" "R28"
 			(at 260.35 34.2899 0)
 			(effects
 				(font
@@ -5710,7 +6030,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 256.032 35.56 90)
 			(effects
 				(font
@@ -5737,6 +6057,22 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 257.81 35.56 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Type" ""
+			(at 257.81 35.56 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "2"
 			(uuid "ec71b73b-5395-4803-a456-fc2a664214c9")
 		)
@@ -5746,7 +6082,7 @@
 		(instances
 			(project "BLDC_Version1_1_0"
 				(path "/1ef2c161-9706-454e-ac1f-db9f896ae7e0/2a3b40aa-b3f2-4df0-a1f7-1e81678567cb"
-					(reference "R?")
+					(reference "R28")
 					(unit 1)
 				)
 			)
@@ -5895,7 +6231,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "a6e5a86e-d41f-422e-b9a0-fc27179f325e")
-		(property "Reference" "R?"
+		(property "Reference" "R22"
 			(at 48.26 117.094 90)
 			(effects
 				(font
@@ -5911,7 +6247,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 48.26 116.078 90)
 			(effects
 				(font
@@ -5938,6 +6274,22 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 48.26 114.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Type" ""
+			(at 48.26 114.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "2"
 			(uuid "3b133443-6e16-43f2-9911-0aefbe73b9b6")
 		)
@@ -5947,7 +6299,7 @@
 		(instances
 			(project "BLDC_Version1_1_0"
 				(path "/1ef2c161-9706-454e-ac1f-db9f896ae7e0/2a3b40aa-b3f2-4df0-a1f7-1e81678567cb"
-					(reference "R?")
+					(reference "R22")
 					(unit 1)
 				)
 			)
@@ -5963,7 +6315,7 @@
 		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "a7fcf557-74ba-4eb1-9336-4ccfbd5a8df6")
-		(property "Reference" "C?"
+		(property "Reference" "C24"
 			(at 124.46 171.4499 0)
 			(effects
 				(font
@@ -6008,6 +6360,22 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 120.65 172.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Type" ""
+			(at 120.65 172.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "dd7eefed-1e30-4228-a4f9-1a4a13392515")
 		)
@@ -6017,7 +6385,7 @@
 		(instances
 			(project "BLDC_Version1_1_0"
 				(path "/1ef2c161-9706-454e-ac1f-db9f896ae7e0/2a3b40aa-b3f2-4df0-a1f7-1e81678567cb"
-					(reference "C?")
+					(reference "C24")
 					(unit 1)
 				)
 			)
@@ -6032,7 +6400,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "acdf7526-f0c4-424e-ae61-37bcf501cf21")
-		(property "Reference" "TP?"
+		(property "Reference" "TP9"
 			(at 39.37 144.7799 90)
 			(effects
 				(font
@@ -6050,7 +6418,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "TestPoint:TestPoint_Pad_D2.0mm"
 			(at 34.29 151.13 0)
 			(effects
 				(font
@@ -6077,13 +6445,29 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 34.29 146.05 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Type" ""
+			(at 34.29 146.05 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "8b565fc1-508e-4326-8c1f-cbbdb897fdc1")
 		)
 		(instances
 			(project "BLDC_Version1_1_0"
 				(path "/1ef2c161-9706-454e-ac1f-db9f896ae7e0/2a3b40aa-b3f2-4df0-a1f7-1e81678567cb"
-					(reference "TP?")
+					(reference "TP9")
 					(unit 1)
 				)
 			)
@@ -6098,7 +6482,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "aeaa4fdf-1792-4af2-9b5b-34cecbc18477")
-		(property "Reference" "C?"
+		(property "Reference" "C21"
 			(at 103.124 76.962 0)
 			(effects
 				(font
@@ -6116,7 +6500,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 100.0252 82.55 0)
 			(effects
 				(font
@@ -6143,6 +6527,22 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 99.06 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Type" ""
+			(at 99.06 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "4f3fc56d-a876-4f75-8637-ca4b9cad2de7")
 		)
@@ -6152,7 +6552,7 @@
 		(instances
 			(project "BLDC_Version1_1_0"
 				(path "/1ef2c161-9706-454e-ac1f-db9f896ae7e0/2a3b40aa-b3f2-4df0-a1f7-1e81678567cb"
-					(reference "C?")
+					(reference "C21")
 					(unit 1)
 				)
 			)
@@ -6168,7 +6568,7 @@
 		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "ba1d7b56-2c09-40ad-a586-d712dc1ea192")
-		(property "Reference" "C?"
+		(property "Reference" "C16"
 			(at 35.56 171.4499 0)
 			(effects
 				(font
@@ -6213,6 +6613,22 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 31.75 172.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Type" ""
+			(at 31.75 172.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "d198d978-bff4-4081-86d4-d1d27bae3601")
 		)
@@ -6222,7 +6638,7 @@
 		(instances
 			(project ""
 				(path "/1ef2c161-9706-454e-ac1f-db9f896ae7e0/2a3b40aa-b3f2-4df0-a1f7-1e81678567cb"
-					(reference "C?")
+					(reference "C16")
 					(unit 1)
 				)
 			)
@@ -6372,7 +6788,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "bb77fc37-17a4-4dee-8127-9aeaefef6e83")
-		(property "Reference" "JP?"
+		(property "Reference" "JP2"
 			(at 34.29 72.39 0)
 			(effects
 				(font
@@ -6415,6 +6831,22 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 34.29 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Type" ""
+			(at 34.29 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "232681f3-7052-4837-981d-195b46624ed4")
 		)
@@ -6424,7 +6856,7 @@
 		(instances
 			(project "BLDC_Version1_1_0"
 				(path "/1ef2c161-9706-454e-ac1f-db9f896ae7e0/2a3b40aa-b3f2-4df0-a1f7-1e81678567cb"
-					(reference "JP?")
+					(reference "JP2")
 					(unit 1)
 				)
 			)
@@ -6439,7 +6871,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "be86aa69-88e9-4d5a-90a5-b11a2fdd8aa4")
-		(property "Reference" "TP?"
+		(property "Reference" "TP14"
 			(at 41.91 163.8299 90)
 			(effects
 				(font
@@ -6484,13 +6916,29 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 36.83 165.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Type" ""
+			(at 36.83 165.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "f8b14a0a-20ee-4ee9-81d1-e994831be41a")
 		)
 		(instances
 			(project "BLDC_Version1_1_0"
 				(path "/1ef2c161-9706-454e-ac1f-db9f896ae7e0/2a3b40aa-b3f2-4df0-a1f7-1e81678567cb"
-					(reference "TP?")
+					(reference "TP14")
 					(unit 1)
 				)
 			)
@@ -6505,7 +6953,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "cc595197-51d2-4e68-a1ac-5fa0a8e43e8b")
-		(property "Reference" "C?"
+		(property "Reference" "C25"
 			(at 194.056 120.142 0)
 			(effects
 				(font
@@ -6523,7 +6971,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 201.6252 124.46 0)
 			(effects
 				(font
@@ -6550,6 +6998,22 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 200.66 120.65 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Type" ""
+			(at 200.66 120.65 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "67cbbeeb-2dcf-4320-bf10-5c97565f01ef")
 		)
@@ -6559,7 +7023,7 @@
 		(instances
 			(project "BLDC_Version1_1_0"
 				(path "/1ef2c161-9706-454e-ac1f-db9f896ae7e0/2a3b40aa-b3f2-4df0-a1f7-1e81678567cb"
-					(reference "C?")
+					(reference "C25")
 					(unit 1)
 				)
 			)
@@ -6642,7 +7106,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "d4cb1edf-aeb3-40eb-bec2-b26bbb727d42")
-		(property "Reference" "JP?"
+		(property "Reference" "JP4"
 			(at 34.29 104.14 0)
 			(effects
 				(font
@@ -6685,6 +7149,22 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 34.29 110.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Type" ""
+			(at 34.29 110.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "a4b574b1-7e07-496b-aeb1-64ae59da379b")
 		)
@@ -6694,7 +7174,7 @@
 		(instances
 			(project "BLDC_Version1_1_0"
 				(path "/1ef2c161-9706-454e-ac1f-db9f896ae7e0/2a3b40aa-b3f2-4df0-a1f7-1e81678567cb"
-					(reference "JP?")
+					(reference "JP4")
 					(unit 1)
 				)
 			)
@@ -6709,7 +7189,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "df316aa7-d75b-442a-b168-d4f03379474e")
-		(property "Reference" "TP?"
+		(property "Reference" "TP13"
 			(at 39.37 154.9399 90)
 			(effects
 				(font
@@ -6727,7 +7207,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "TestPoint:TestPoint_Pad_D2.0mm"
 			(at 34.29 161.29 0)
 			(effects
 				(font
@@ -6754,13 +7234,29 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 34.29 156.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Type" ""
+			(at 34.29 156.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "7eb353b0-6206-40a2-bb22-f2906e1968fe")
 		)
 		(instances
 			(project "BLDC_Version1_1_0"
 				(path "/1ef2c161-9706-454e-ac1f-db9f896ae7e0/2a3b40aa-b3f2-4df0-a1f7-1e81678567cb"
-					(reference "TP?")
+					(reference "TP13")
 					(unit 1)
 				)
 			)
@@ -6842,7 +7338,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "e30bcce4-406b-441b-a220-96ceb5f17387")
-		(property "Reference" "TP?"
+		(property "Reference" "TP16"
 			(at 130.81 163.8299 90)
 			(effects
 				(font
@@ -6887,13 +7383,29 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 125.73 165.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Type" ""
+			(at 125.73 165.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "9bd2ab3f-014b-4f7a-9d67-637b22fab2ac")
 		)
 		(instances
 			(project "BLDC_Version1_1_0"
 				(path "/1ef2c161-9706-454e-ac1f-db9f896ae7e0/2a3b40aa-b3f2-4df0-a1f7-1e81678567cb"
-					(reference "TP?")
+					(reference "TP16")
 					(unit 1)
 				)
 			)
@@ -7042,7 +7554,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "f61ea917-9258-425b-8fdb-1782d6098967")
-		(property "Reference" "C?"
+		(property "Reference" "C26"
 			(at 209.55 104.648 0)
 			(effects
 				(font
@@ -7060,7 +7572,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 205.4352 109.22 0)
 			(effects
 				(font
@@ -7087,6 +7599,22 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 204.47 105.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Type" ""
+			(at 204.47 105.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "908e1b59-cf4d-4d9a-bca3-d93400f4d4d5")
 		)
@@ -7096,7 +7624,7 @@
 		(instances
 			(project "BLDC_Version1_1_0"
 				(path "/1ef2c161-9706-454e-ac1f-db9f896ae7e0/2a3b40aa-b3f2-4df0-a1f7-1e81678567cb"
-					(reference "C?")
+					(reference "C26")
 					(unit 1)
 				)
 			)
@@ -7162,6 +7690,22 @@
 					(size 1.27 1.27)
 				)
 				(hide yes)
+			)
+		)
+		(property "Sim.Device" ""
+			(at 152.4 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Type" ""
+			(at 152.4 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
 			)
 		)
 		(pin "7"
