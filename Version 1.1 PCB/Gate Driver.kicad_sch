@@ -5540,7 +5540,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "TestPoint:TestPoint_Pad_D2.0mm"
+		(property "Footprint" "easyeda2kicad:SMD_RH-5015"
 			(at 82.55 170.18 0)
 			(effects
 				(font
@@ -6889,7 +6889,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "TestPoint:TestPoint_Pad_D2.0mm"
+		(property "Footprint" "easyeda2kicad:SMD_RH-5015"
 			(at 36.83 170.18 0)
 			(effects
 				(font
@@ -7356,7 +7356,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "TestPoint:TestPoint_Pad_D2.0mm"
+		(property "Footprint" "easyeda2kicad:SMD_RH-5015"
 			(at 125.73 170.18 0)
 			(effects
 				(font
