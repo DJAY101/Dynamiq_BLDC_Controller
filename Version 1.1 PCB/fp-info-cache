@@ -1,4 +1,4 @@
-25744543472489631
+25748058177184753
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -90509,6 +90509,20 @@ Project_BLDC_Foorprint_Library
 0
 8
 8
+Project_BLDC_Foorprint_Library
+LOGO
+
+
+0
+0
+0
+Project_BLDC_Foorprint_Library
+LOGO_LARGE
+
+
+0
+0
+0
 RF
 Skyworks_SKY13575_639LF
 http://www.skyworksinc.com/uploads/documents/SKY13575_639LF_203270D.pdf
@@ -103143,7 +103157,7 @@ POWERPAK-1212-8_L3.3-W3.3-P0.65-BL-EP
 
 0
 9
-9
+8
 easyeda2kicad
 PQFN-8_L5.8-W4.9-P1.27-LS6.0-BL
 
@@ -103233,5 +103247,5 @@ USB-C_SMD-TYPE-C-31-M-12
 
 
 0
-22
+20
 20
