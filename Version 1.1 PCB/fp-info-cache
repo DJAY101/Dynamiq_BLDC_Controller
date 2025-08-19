@@ -1,4 +1,4 @@
-25748058177184753
+25751569251954005
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -90509,6 +90509,20 @@ Project_BLDC_Foorprint_Library
 0
 8
 8
+Project_BLDC_Foorprint_Library
+Cat
+
+
+0
+0
+0
+Project_BLDC_Foorprint_Library
+Infineon_PG-TDSON-8_6.15x5.15mm
+Infineon, PG-TDSON-8, 6.15x5.15x1mm, https://www.infineon.com/dgdl/Infineon-BSC520N15NS3_-DS-v02_02-en.pdf?fileId=db3a30432239cccd0122eee57d9b21a4
+Infineon OptiMOS
+0
+21
+5
 Project_BLDC_Foorprint_Library
 LOGO
 
