@@ -159,11 +159,11 @@ void MotorController::svpwmCommutation() {
   // assumes the electrical theta is now at the target (hence open loop control)
   m_electricalTheta = targetElectricalTheta;
   
-  // Serial.print(">CA:");
-  // Serial.println(fmod((m_encoderAngle * MAGNETIC_POLE_COUNTS / 2.0) + 145, 360), 4);
+  Serial.print(">CA:");
+  Serial.println(fmod((m_encoderAngle * MAGNETIC_POLE_COUNTS / 2.0) - 90, 360), 4);
 
-  // Serial.print(">EA:");
-  // Serial.println(fmod(m_electricalTheta * 180.0 / M_PI, 360.0), 4);
+  Serial.print(">EA:");
+  Serial.println(fmod(m_electricalTheta * 180.0 / M_PI, 360.0), 4);
 }
 
 
@@ -183,7 +183,8 @@ void MotorController::svpwmEncoderCommutation() {
   }
 
   // Set the electrical theta to the actual position taken from the encoder (closed loopiness comes in)
-  const double angleOffset = 130.0;
+  // const double angleOffset = 130.0; // for motor with 130kv*
+  const double angleOffset = -90.0; // for motor with 90kV*
   m_electricalTheta = fmod((m_encoderAngle * MAGNETIC_POLE_COUNTS / 2.0) + angleOffset, 360) * M_PI / 180.0; 
 
   // The theta step should be 90 degrees from the magnet to ensure maximum torque and the direction depends on the torque sign

@@ -187,7 +187,17 @@ void setup() {
 
 bool lipoThresholdHit = false;
 void loop() {
-  m_motorController->update(magEncoder.readAngleDegree());
+  // AS5047P_Types::ERROR_t sensorError = AS5047P_Types::ERROR_t();
+  double encoderAngle = magEncoder.readAngleDegree();
+  AS5047P_Types::DIAAGC_t diagReg = magEncoder.read_DIAAGC();
+  Serial.println(magEncoder.readStatusAsArduinoString());
+  // magEncoder.checkForSensorErrorF(&sensorError);
+  if (diagReg.data.values.LF == 0) {
+    Serial.println("Sensor ERROR (INITIALISING)!");
+  } else {
+    m_motorController->update(encoderAngle);
+  }
+
   if (!disableSerialInput) {
     m_serialManager->updateSerialInput();
   }
@@ -202,3 +212,6 @@ void loop() {
     Serial.println("Lipo Voltage Threshold hit");
   }
 }
+
+
+
