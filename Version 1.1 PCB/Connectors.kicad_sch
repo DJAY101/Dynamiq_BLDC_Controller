@@ -2666,12 +2666,6 @@
 		(uuid "6bee68b5-b73d-4323-b1b2-bcc52365416f")
 	)
 	(junction
-		(at 203.2 95.25)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "8c686a97-af14-4960-801d-907793e9a64f")
-	)
-	(junction
 		(at 90.17 119.38)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2708,19 +2702,13 @@
 		(uuid "f35fedb3-f4ee-47a6-8ebc-3e7b915fca3b")
 	)
 	(junction
-		(at 203.2 100.33)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "fb73a3df-cac2-4d1b-a444-b24300d4c036")
-	)
-	(junction
 		(at 77.47 120.65)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "ff5d2c7e-f9ed-4465-b2a8-67e1dbab9863")
 	)
 	(no_connect
-		(at 254 91.44)
+		(at 260.35 91.44)
 		(uuid "05722457-b162-48c3-8bd7-f4949fef8796")
 	)
 	(no_connect
@@ -2728,7 +2716,7 @@
 		(uuid "0d29fb5a-a194-4d3c-809d-aa1842553e93")
 	)
 	(no_connect
-		(at 254 106.68)
+		(at 260.35 106.68)
 		(uuid "27b967d4-c8ce-4eef-8a34-2e69ff3e06ca")
 	)
 	(no_connect
@@ -2815,7 +2803,7 @@
 	)
 	(wire
 		(pts
-			(xy 254 99.06) (xy 256.54 99.06)
+			(xy 260.35 99.06) (xy 262.89 99.06)
 		)
 		(stroke
 			(width 0)
@@ -2842,16 +2830,6 @@
 			(type default)
 		)
 		(uuid "390ca4c7-3fd1-49ec-a3e0-0b86b74476c2")
-	)
-	(wire
-		(pts
-			(xy 203.2 100.33) (xy 203.2 106.68)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "3d07a7df-fa5f-4dc9-905c-1c0a02aad996")
 	)
 	(wire
 		(pts
@@ -2885,16 +2863,6 @@
 	)
 	(wire
 		(pts
-			(xy 203.2 95.25) (xy 204.47 95.25)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "4422b4d5-1e98-4e7d-982d-82969126fcc8")
-	)
-	(wire
-		(pts
 			(xy 77.47 115.57) (xy 77.47 118.11)
 		)
 		(stroke
@@ -2912,16 +2880,6 @@
 			(type default)
 		)
 		(uuid "4861bafa-dad6-4c46-b72a-fce01be5191f")
-	)
-	(wire
-		(pts
-			(xy 203.2 100.33) (xy 204.47 100.33)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5a6357c0-275d-4656-b2d2-cf81b8f28466")
 	)
 	(wire
 		(pts
@@ -2945,13 +2903,23 @@
 	)
 	(wire
 		(pts
-			(xy 201.93 95.25) (xy 203.2 95.25)
+			(xy 201.93 95.25) (xy 204.47 95.25)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "626f8d1a-0258-4cb0-a643-0f7f92d6a9c7")
+	)
+	(wire
+		(pts
+			(xy 186.69 119.38) (xy 215.9 119.38)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "648186a8-09bd-4ef3-b20a-d85924c57f85")
 	)
 	(wire
 		(pts
@@ -2995,16 +2963,6 @@
 	)
 	(wire
 		(pts
-			(xy 203.2 106.68) (xy 220.98 106.68)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "88fe059a-7836-4ba8-bbc2-62a3ae8e701e")
-	)
-	(wire
-		(pts
 			(xy 201.93 93.98) (xy 201.93 95.25)
 		)
 		(stroke
@@ -3035,16 +2993,6 @@
 	)
 	(wire
 		(pts
-			(xy 203.2 91.44) (xy 220.98 91.44)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "9789b478-3717-4560-bc6d-94d15e736182")
-	)
-	(wire
-		(pts
 			(xy 186.69 120.65) (xy 186.69 119.38)
 		)
 		(stroke
@@ -3055,7 +3003,7 @@
 	)
 	(wire
 		(pts
-			(xy 218.44 99.06) (xy 220.98 99.06)
+			(xy 215.9 99.06) (xy 227.33 99.06)
 		)
 		(stroke
 			(width 0)
@@ -3095,33 +3043,13 @@
 	)
 	(wire
 		(pts
-			(xy 218.44 99.06) (xy 218.44 119.38)
+			(xy 215.9 99.06) (xy 215.9 119.38)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "cbda8d7d-9575-46f3-a9f2-2be30ad3e1a0")
-	)
-	(wire
-		(pts
-			(xy 218.44 119.38) (xy 186.69 119.38)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "d7d330cf-9ccd-4bbe-8822-b2739c31a067")
-	)
-	(wire
-		(pts
-			(xy 203.2 95.25) (xy 203.2 91.44)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "d7dc82f7-d6e1-4c5c-9d4e-7141e5952040")
 	)
 	(wire
 		(pts
@@ -3175,7 +3103,7 @@
 	)
 	(wire
 		(pts
-			(xy 201.93 100.33) (xy 203.2 100.33)
+			(xy 201.93 100.33) (xy 204.47 100.33)
 		)
 		(stroke
 			(width 0)
@@ -3491,6 +3419,28 @@
 			)
 		)
 	)
+	(global_label "USB_D +"
+		(shape input)
+		(at 227.33 91.44 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "49fc295f-3568-4c1f-b944-15e4635f1e45")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 215.7572 91.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "ENCODER_CLK"
 		(shape input)
 		(at 34.29 54.61 0)
@@ -3515,7 +3465,7 @@
 	)
 	(global_label "3.3V_BUS"
 		(shape input)
-		(at 256.54 99.06 0)
+		(at 262.89 99.06 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3525,7 +3475,7 @@
 		)
 		(uuid "53c5366c-3754-4c29-998e-5a97221bcef3")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 268.4152 99.06 0)
+			(at 274.7652 99.06 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3658,6 +3608,28 @@
 		(uuid "83aa4b48-18f5-4c9f-ad58-6c8cc0e42fd6")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 105.6905 116.84 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "USB_D -"
+		(shape input)
+		(at 227.33 106.68 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "8b2c3d9c-01d3-4d16-8cef-55593da80b0d")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 215.7572 106.68 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4409,7 +4381,7 @@
 	)
 	(symbol
 		(lib_id "easyeda2kicad:USBLC6-2SC6")
-		(at 237.49 99.06 0)
+		(at 243.84 99.06 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -4418,7 +4390,7 @@
 		(fields_autoplaced yes)
 		(uuid "45653cd7-c079-43c5-9fb6-a8b3dc5827e0")
 		(property "Reference" "D9"
-			(at 237.49 81.28 0)
+			(at 243.84 81.28 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4426,7 +4398,7 @@
 			)
 		)
 		(property "Value" "USBLC6-2SC6"
-			(at 237.49 83.82 0)
+			(at 243.84 83.82 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4434,7 +4406,7 @@
 			)
 		)
 		(property "Footprint" "easyeda2kicad:SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BL"
-			(at 237.49 114.3 0)
+			(at 243.84 114.3 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4443,7 +4415,7 @@
 			)
 		)
 		(property "Datasheet" "https://lcsc.com/product-detail/Diodes-ESD_STMicroelectronics_USBLC6-2SC6_USBLC6-2SC6_C7519.html"
-			(at 237.49 116.84 0)
+			(at 243.84 116.84 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4452,7 +4424,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 237.49 99.06 0)
+			(at 243.84 99.06 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4461,7 +4433,7 @@
 			)
 		)
 		(property "LCSC Part" "C7519"
-			(at 237.49 119.38 0)
+			(at 243.84 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4470,7 +4442,7 @@
 			)
 		)
 		(property "Sim.Device" ""
-			(at 237.49 99.06 0)
+			(at 243.84 99.06 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4478,7 +4450,7 @@
 			)
 		)
 		(property "Sim.Type" ""
-			(at 237.49 99.06 0)
+			(at 243.84 99.06 0)
 			(effects
 				(font
 					(size 1.27 1.27)
