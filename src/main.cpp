@@ -190,7 +190,7 @@ void loop() {
   // AS5047P_Types::ERROR_t sensorError = AS5047P_Types::ERROR_t();
   double encoderAngle = magEncoder.readAngleDegree();
   AS5047P_Types::DIAAGC_t diagReg = magEncoder.read_DIAAGC();
-  Serial.println(magEncoder.readStatusAsArduinoString());
+  // Serial.println(magEncoder.readStatusAsArduinoString());
   // magEncoder.checkForSensorErrorF(&sensorError);
   if (diagReg.data.values.LF == 0) {
     Serial.println("Sensor ERROR (INITIALISING)!");

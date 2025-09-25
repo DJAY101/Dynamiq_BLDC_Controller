@@ -54,6 +54,15 @@ void MotorController::init() {
 }
 
 
+  std::array<double, 3> MotorController::getPhaseCurrents() {
+    std::array<double, 3> phaseCurrentData{};
+    phaseCurrentData.at(0) = analogRead(U_CUR_PIN);
+    phaseCurrentData.at(1) = analogRead(V_CUR_PIN);
+    phaseCurrentData.at(2) = analogRead(W_CUR_PIN);
+    return phaseCurrentData;
+  }
+
+
 void MotorController::setDriverEnable(bool enable) {
   if (enable) {
     // Enable Driver
@@ -184,7 +193,8 @@ void MotorController::svpwmEncoderCommutation() {
 
   // Set the electrical theta to the actual position taken from the encoder (closed loopiness comes in)
   // const double angleOffset = 130.0; // for motor with 130kv*
-  const double angleOffset = -90.0; // for motor with 90kV*
+  // const double angleOffset = -90.0; // for motor with 90kV*
+  double angleOffset = testValue;
   m_electricalTheta = fmod((m_encoderAngle * MAGNETIC_POLE_COUNTS / 2.0) + angleOffset, 360) * M_PI / 180.0; 
 
   // The theta step should be 90 degrees from the magnet to ensure maximum torque and the direction depends on the torque sign
@@ -202,6 +212,15 @@ void MotorController::svpwmEncoderCommutation() {
 
   // Set the phase with the output above
   setPhasePercentOutput(U_duty * absoluteTorque, V_duty * absoluteTorque, W_duty * absoluteTorque);
+  std::array<double, 3> currentData = getPhaseCurrents();
+  Serial.print(">UDuty:");
+  Serial.println(U_duty * absoluteTorque);
+  Serial.print(">U:");
+  Serial.println(currentData[0]);
+  Serial.print(">V:");
+  Serial.println(currentData[1]);
+  Serial.print(">W:");
+  Serial.println(currentData[2]);
 }
 
 

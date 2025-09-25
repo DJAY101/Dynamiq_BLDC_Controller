@@ -65,6 +65,9 @@ class MotorController {
 
     double* getTestValue() { return &testValue; }
 
+    // returns the current values of the three phases in a array where [u, v, w] data is stored
+    std::array<double, 3> getPhaseCurrents();
+
   private: 
     void setPhasePercentOutput(double uDutyPercent, double vDutyPercent, double wDutyPercent);
     void svpwmCommutation();
@@ -103,5 +106,5 @@ class MotorController {
     double m_torque = 0.0;
 
     // test value that can be adjusted in real time by serial
-    double testValue = 145;
+    double testValue = -90;
 };
