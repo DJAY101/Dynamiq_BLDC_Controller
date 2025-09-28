@@ -21,6 +21,9 @@
 #define V_CUR_PIN 8
 #define W_CUR_PIN 9
 
+constexpr double SHUNT_RESISTANCE {0.1};
+constexpr double CURRENT_AMP {5.0};
+
 // Encoder SPI pins
 #define ENCODER_CLK 39
 #define ENCODER_MISO 40

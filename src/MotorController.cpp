@@ -56,9 +56,13 @@ void MotorController::init() {
 
   std::array<double, 3> MotorController::getPhaseCurrents() {
     std::array<double, 3> phaseCurrentData{};
-    phaseCurrentData.at(0) = analogRead(U_CUR_PIN);
-    phaseCurrentData.at(1) = analogRead(V_CUR_PIN);
-    phaseCurrentData.at(2) = analogRead(W_CUR_PIN);
+
+    // LATER IMPLEMENT VINOFS is a random offset voltage in the range of a few to a few 10mV of the input amplifier. Determine and compensate for by measuring output offset at zero current prior to motor operation.
+    constexpr double CURRENT_CONST { 1.0 / (SHUNT_RESISTANCE * CURRENT_AMP)};
+    constexpr double HALF_V{3.3 / 2.0}; // halve of the IO voltage (VOFS)
+    phaseCurrentData.at(0) = (analogRead(U_CUR_PIN) - HALF_V) * CURRENT_CONST;
+    phaseCurrentData.at(1) = (analogRead(V_CUR_PIN) - HALF_V) * CURRENT_CONST;
+    phaseCurrentData.at(2) = (analogRead(W_CUR_PIN) - HALF_V) * CURRENT_CONST;
     return phaseCurrentData;
   }
 
