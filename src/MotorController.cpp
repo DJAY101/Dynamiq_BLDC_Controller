@@ -26,9 +26,6 @@ void MotorController::init() {
     // Lipo voltage sensing pin
     pinMode(LIPO_V_PIN, INPUT);
 
-    // Potentiometer pin
-    pinMode(POT_PIN, INPUT);
-
     // setup GPIO output for mcpwm
     mcpwm_gpio_init(MCPWM_UNIT_0, MCPWM0A, U_HS_PIN);
     mcpwm_gpio_init(MCPWM_UNIT_0, MCPWM0B, V_HS_PIN);

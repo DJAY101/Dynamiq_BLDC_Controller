@@ -5,43 +5,43 @@
 #include "soc/mcpwm_periph.h"
 
 // Pin definition
-#define DRV_EN_PIN 38
+constexpr u_int8_t DRV_EN_PIN {38};
+
 // Low side control pins
-#define W_LS_PIN 10
-#define V_LS_PIN 12
-#define U_LS_PIN 14
+constexpr u_int8_t W_LS_PIN {10};
+constexpr u_int8_t V_LS_PIN {12};
+constexpr u_int8_t U_LS_PIN {14};
 
 // High side control pins
-#define U_HS_PIN 21
-#define V_HS_PIN 13
-#define W_HS_PIN 11
+constexpr u_int8_t U_HS_PIN {21};
+constexpr u_int8_t V_HS_PIN {13};
+constexpr u_int8_t W_HS_PIN {11};
 
 // Current sensing input
-#define U_CUR_PIN 7
-#define V_CUR_PIN 8
-#define W_CUR_PIN 9
+constexpr u_int8_t U_CUR_PIN {7};
+constexpr u_int8_t V_CUR_PIN {8};
+constexpr u_int8_t W_CUR_PIN {9};
 
+// Current sensing constants
 constexpr double SHUNT_RESISTANCE {0.1};
 constexpr double CURRENT_AMP {5.0};
 
 // Encoder SPI pins
-#define ENCODER_CLK 39
-#define ENCODER_MISO 40
-#define ENCODER_MOSI 41
-#define ENCODER_CSN 42
-
-#define POT_PIN 18
+constexpr u_int8_t ENCODER_CLK {39};
+constexpr u_int8_t ENCODER_MISO {40};
+constexpr u_int8_t ENCODER_MOSI {41};
+constexpr u_int8_t ENCODER_CSN {42};
 
 // Lipo voltage
-#define LIPO_V_PIN 15
+constexpr u_int8_t LIPO_V_PIN {15};
 // Lipo Error LED
-#define LIPO_LED_PIN 4
+constexpr u_int8_t LIPO_LED_PIN {4};
 // Status LED's
-#define STAT_1_LED_PIN 5
-#define STAT_2_LED_PIN 6
+constexpr u_int8_t STAT_1_LED_PIN {5};
+constexpr u_int8_t STAT_2_LED_PIN {6};
 
 // Motor Magnet Pole Count
-#define MAGNETIC_POLE_COUNTS 40
+constexpr u_int32_t MAGNETIC_POLE_COUNTS {40};
 
   enum ControlMode {
     IDLE,
@@ -51,10 +51,9 @@ constexpr double CURRENT_AMP {5.0};
     CLOSED_LOOP_POSITION
   };
 
+
 class MotorController {
   public:
-
-
 
     MotorController();
     void init(); // Sets up the board pins to the correct INPUT / OUTPUT
