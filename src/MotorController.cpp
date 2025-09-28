@@ -35,7 +35,7 @@ void MotorController::init() {
     mcpwm_gpio_init(MCPWM_UNIT_0, MCPWM1A, W_HS_PIN);
 
     mcpwm_config_t pwm_config;
-    pwm_config.frequency = 19000;    //frequency = 50Hz, i.e. for every servo motor time period should be 20ms
+    pwm_config.frequency = 15000;    //frequency = 50Hz, i.e. for every servo motor time period should be 20ms
     pwm_config.cmpr_a = 0;    //duty cycle of PWMxA = 0
     pwm_config.cmpr_b = 0;    //duty cycle of PWMxb = 0
     pwm_config.counter_mode = MCPWM_UP_COUNTER;
@@ -168,11 +168,39 @@ void MotorController::svpwmCommutation() {
   // assumes the electrical theta is now at the target (hence open loop control)
   m_electricalTheta = targetElectricalTheta;
   
+  double CA = fmod((m_encoderAngle * MAGNETIC_POLE_COUNTS / 2.0) + testValue, 360);
+  double EA = fmod(m_electricalTheta * 180.0 / M_PI, 360.0);
+
   Serial.print(">CA:");
-  Serial.println(fmod((m_encoderAngle * MAGNETIC_POLE_COUNTS / 2.0) - 90, 360), 4);
+  Serial.println(CA, 4);
 
   Serial.print(">EA:");
-  Serial.println(fmod(m_electricalTheta * 180.0 / M_PI, 360.0), 4);
+  Serial.println(EA, 4);
+
+  // unsigned long deltaTime = micros() - m_previousMillis;
+  Serial.print(">EncAngle:");
+  Serial.println(m_encoderAngle);
+
+  // m_previousMillis = micros();
+  // m_previousEnc = m_encoderAngle;
+  double diff = CA - EA;
+  if (fabs(diff) < 40) {
+    Serial.print(">DIFF:");
+    Serial.println(diff);
+  }
+
+    std::array<double, 3> currentData = getPhaseCurrents();
+  Serial.print(">UDuty:");
+  Serial.println(U_duty);
+  Serial.print(">UDutyENC:");
+  Serial.println(sin(CA * M_PI / 180.0)*50+50);
+
+  // Serial.print(">U:");
+  // Serial.println(currentData[0]);
+  // Serial.print(">V:");
+  // Serial.println(currentData[1]);
+  // Serial.print(">W:");
+  // Serial.println(currentData[2]);
 }
 
 
@@ -225,7 +253,7 @@ void MotorController::svpwmEncoderCommutation() {
 
 
 
-void MotorController::update(double encAngle) {
+void MotorController::update(double encAngle, double encMag) {
   m_encoderAngle = encAngle;
 
   // Serial.print(">Encoder Angle:");
@@ -235,6 +263,8 @@ void MotorController::update(double encAngle) {
 
   // Utilise svpwmCommutation if its open loop control
   if (m_currentControlMode == ControlMode::OPEN_LOOP_PERCENT_OUTPUT) {
+    Serial.print(">EncMag:");
+    Serial.println(encMag);
     svpwmCommutation();
   }
 

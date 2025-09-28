@@ -55,7 +55,7 @@ class MotorController {
 
     MotorController();
     void init(); // Sets up the board pins to the correct INPUT / OUTPUT
-    void update(double encAngle); // this needs to be in the main loop for the motor to update and spin
+    void update(double encAngle, double encMag); // this needs to be in the main loop for the motor to update and spin
     void setDriverEnable(bool enable);
     void setIdle(); // puts the driver into idle mode
     void openLoopPercentageOutput(double percentOutput); // uses SVPWM with no feedback loop from mag encoder
@@ -107,4 +107,6 @@ class MotorController {
 
     // test value that can be adjusted in real time by serial
     double testValue = -90;
+    double m_previousEnc{0};
+    unsigned long m_previousMillis{0};
 };

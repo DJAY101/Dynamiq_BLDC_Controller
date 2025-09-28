@@ -34,13 +34,13 @@
 #include <AS5047P.h>
 
 // Other Constants
-#define CPU_FREQ_MHZ 160
+#define CPU_FREQ_MHZ 240
 
 #define PWM_FREQ 16384
 #define PWM_RES 11
 
 // define the spi bus speed for mag encoder
-#define AS5047P_CUSTOM_SPI_BUS_SPEED 8000000 // 1Mhz
+#define AS5047P_CUSTOM_SPI_BUS_SPEED 9000000 // 1Mhz
 
 #define LIPO_DISABLE_VOLTAGE 14.0
 
@@ -189,14 +189,11 @@ bool lipoThresholdHit = false;
 void loop() {
   // AS5047P_Types::ERROR_t sensorError = AS5047P_Types::ERROR_t();
   double encoderAngle = magEncoder.readAngleDegree();
-  AS5047P_Types::DIAAGC_t diagReg = magEncoder.read_DIAAGC();
   // Serial.println(magEncoder.readStatusAsArduinoString());
   // magEncoder.checkForSensorErrorF(&sensorError);
-  if (diagReg.data.values.LF == 0) {
-    Serial.println("Sensor ERROR (INITIALISING)!");
-  } else {
-    m_motorController->update(encoderAngle);
-  }
+  
+  m_motorController->update(encoderAngle, magEncoder.readMagnitude());
+  
 
   if (!disableSerialInput) {
     m_serialManager->updateSerialInput();
