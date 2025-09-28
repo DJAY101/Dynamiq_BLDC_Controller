@@ -23,27 +23,21 @@
 #include "esp32-hal-cpu.h"
 #include "esp_attr.h"
 
-#include "soc/rtc.h"
-#include "driver/mcpwm.h"
-#include "soc/mcpwm_periph.h"
-
+// include custom classes
 #include "../include/MotorController.h"
 #include "../include/SerialManager.h"
 
 // Include the library for the AS5047P sensor.
 #include <AS5047P.h>
 
-// Other Constants
-#define CPU_FREQ_MHZ 240
+// ESP32 Freq
+constexpr u_int32_t CPU_FREQ_MHZ {240};
 
-#define PWM_FREQ 16384
-#define PWM_RES 11
+// Mag Encoder SPI Bus Speed
+constexpr u_int32_t AS5047P_CUSTOM_SPI_BUS_SPEED {9000000}; // 9Mhz
 
-// define the spi bus speed for mag encoder
-#define AS5047P_CUSTOM_SPI_BUS_SPEED 9000000 // 1Mhz
-
-#define LIPO_DISABLE_VOLTAGE 14.0
-
+// The voltage at which the controller disables itself
+constexpr double LIPO_DISABLE_VOLTAGE {14.0};
 
 // initialize a new AS5047P sensor object.
 AS5047P magEncoder(ENCODER_CSN, AS5047P_CUSTOM_SPI_BUS_SPEED);
@@ -66,50 +60,9 @@ double mapf(double x, double in_min, double in_max, double out_min, double out_m
 // Returns the current voltage of the lipo battery
 double getLipoVoltage() {
   // Voltage offset of lipo due to voltage divider tolerance
-  const double LIPO_OFFSET = 0.7;
+  constexpr double LIPO_OFFSET = 0.7;
   return mapf(analogRead(LIPO_V_PIN), 0, 4095, 0, 36.3) + LIPO_OFFSET;
 }
-
-
-// Update stat LED's depending on the direction the motor is turning
-double previousTheta = 0;
-void updateLED(double currentTheta) {
-  if (currentTheta > previousTheta) {
-    // if theta is increasing then turn on stat 1
-    digitalWrite(STAT_1_LED_PIN, HIGH);
-    digitalWrite(STAT_2_LED_PIN, LOW);
-  } else if (currentTheta < previousTheta) {
-    // if theta is decreasing then turn on stat 2
-    digitalWrite(STAT_1_LED_PIN, LOW);
-    digitalWrite(STAT_2_LED_PIN, HIGH);
-  } else {
-    // if theta is stationary then turn on both
-    digitalWrite(STAT_1_LED_PIN, HIGH);
-    digitalWrite(STAT_2_LED_PIN, HIGH);
-  }
-  previousTheta = currentTheta;
-}
-
-void printArray(char* arr, int size) {
-  for (int i = 0; i < size; i++) {
-    Serial.println(arr[i]);
-  }
-}
-
-double getPotValueMapped(double a, double b) {
-  return mapf(analogRead(POT_PIN), 0, 4095.0, a, b);
-}
-
-double getSign(double num) {
-  if (num == 0) return 0;
-  if (num > 0) { return 1.0; } else { return -1.0; }
-}
-
-double clamp(double d, double min, double max) {
-  const double t = d < min ? min : d;
-  return t > max ? max : t;
-}
-
 
 void executeSerialCommand(SerialManager* serialManager) {
    // Print out command recieved
@@ -181,16 +134,15 @@ void setup() {
     Serial.println(F("Can't connect to the AS5047P sensor! Please check the connection..."));
     delay(5000);
   }
-  delay(100);
+  delay(300);
 }
 
 
 bool lipoThresholdHit = false;
 void loop() {
-  // AS5047P_Types::ERROR_t sensorError = AS5047P_Types::ERROR_t();
+
+
   double encoderAngle = magEncoder.readAngleDegree();
-  // Serial.println(magEncoder.readStatusAsArduinoString());
-  // magEncoder.checkForSensorErrorF(&sensorError);
   
   m_motorController->update(encoderAngle, magEncoder.readMagnitude());
   
