@@ -34,7 +34,12 @@
 constexpr u_int32_t CPU_FREQ_MHZ {240};
 
 // Mag Encoder SPI Bus Speed
-constexpr u_int32_t AS5047P_CUSTOM_SPI_BUS_SPEED {9000000}; // 9Mhz
+constexpr u_int32_t AS5047P_CUSTOM_SPI_BUS_SPEED {1000000}; // 9Mhz
+// Encoder SPI pins
+constexpr u_int8_t ENCODER_CLK {39};
+constexpr u_int8_t ENCODER_MISO {40};
+constexpr u_int8_t ENCODER_MOSI {41};
+constexpr u_int8_t ENCODER_CSN {42};
 
 // The voltage at which the controller disables itself
 constexpr double LIPO_DISABLE_VOLTAGE {14.0};
@@ -44,6 +49,7 @@ AS5047P magEncoder(ENCODER_CSN, AS5047P_CUSTOM_SPI_BUS_SPEED);
 
 // init my motor drivers and serial manager
 MotorController* m_motorController = new MotorController();
+
 SerialManager* m_serialManager = new SerialManager();
 
 bool disableSerialInput = false;

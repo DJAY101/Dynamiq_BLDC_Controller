@@ -10,8 +10,9 @@ void MotorController::init() {
 
     // LED Pins
     pinMode(LIPO_LED_PIN, OUTPUT);
-    pinMode(STAT_1_LED_PIN, OUTPUT);
-    pinMode(STAT_2_LED_PIN, OUTPUT);
+
+    // Init Status Light singleton
+    StatusLight::getInstance().init();
 
     // Phase enable pins
     pinMode(U_LS_PIN, OUTPUT);
@@ -57,9 +58,14 @@ void MotorController::init() {
     // LATER IMPLEMENT VINOFS is a random offset voltage in the range of a few to a few 10mV of the input amplifier. Determine and compensate for by measuring output offset at zero current prior to motor operation.
     constexpr double CURRENT_CONST { 1.0 / (SHUNT_RESISTANCE * CURRENT_AMP)};
     constexpr double HALF_V{3.3 / 2.0}; // halve of the IO voltage (VOFS)
-    phaseCurrentData.at(0) = (analogRead(U_CUR_PIN) - HALF_V) * CURRENT_CONST;
-    phaseCurrentData.at(1) = (analogRead(V_CUR_PIN) - HALF_V) * CURRENT_CONST;
-    phaseCurrentData.at(2) = (analogRead(W_CUR_PIN) - HALF_V) * CURRENT_CONST;
+
+    double uVolt = mapf(analogRead(U_CUR_PIN), 0, 4098, 0, 3.3);
+    double vVolt = mapf(analogRead(V_CUR_PIN), 0, 4098, 0, 3.3);
+    double wVolt = mapf(analogRead(W_CUR_PIN), 0, 4098, 0, 3.3);
+
+    phaseCurrentData.at(0) = (uVolt - HALF_V) * CURRENT_CONST;
+    phaseCurrentData.at(1) = (vVolt - HALF_V) * CURRENT_CONST;
+    phaseCurrentData.at(2) = (wVolt - HALF_V) * CURRENT_CONST;
     return phaseCurrentData;
   }
 
@@ -105,6 +111,7 @@ void MotorController::openLoopPercentageOutput(double percentOutput) {
   }
   m_currentControlMode = ControlMode::OPEN_LOOP_PERCENT_OUTPUT;
   m_percentageOutput = percentOutput;
+  StatusLight::getInstance().updateStatus(getOutputDirection(), percentOutput);
 }
 
 void MotorController::closedLoopPercentageOutput(double percentOutput) {
@@ -114,6 +121,10 @@ void MotorController::closedLoopPercentageOutput(double percentOutput) {
   }
   m_currentControlMode = ControlMode::CLOSED_LOOP_PERCENT_OUTPUT;
   m_percentageOutput = percentOutput;
+
+  StatusLight::getInstance().updateStatus(getOutputDirection(), percentOutput);
+
+
 }
 
 void MotorController::setClosedLoopPosition(double position) {
@@ -128,6 +139,8 @@ void MotorController::setIdle() {
   m_currentControlMode = ControlMode::IDLE;
   m_percentageOutput = 0.0;
   m_electricalThetaStep = 0.0;
+  StatusLight::getInstance().updateStatus(RotationDir::IDLE, 0);
+
 }
 
 void MotorController::setOpenLoopPosition(double position, bool physicalShaftPos) {
@@ -195,7 +208,7 @@ void MotorController::svpwmCommutation() {
   Serial.println(U_duty);
   Serial.print(">UDutyENC:");
   Serial.println(sin(CA * M_PI / 180.0)*50+50);
-
+  
   // Serial.print(">U:");
   // Serial.println(currentData[0]);
   // Serial.print(">V:");
@@ -285,6 +298,7 @@ void MotorController::update(double encAngle, double encMag) {
       Serial.print(">Angle:");
       Serial.println(m_encoderAngle);
     }
+    StatusLight::getInstance().updateStatus(getOutputDirection(), m_percentageOutput);
 
     svpwmEncoderCommutation();
   }

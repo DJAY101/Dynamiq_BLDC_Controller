@@ -1,3 +1,5 @@
+#pragma once
+
 // This class manages the input from serial connection
 #include <Arduino.h>
 
