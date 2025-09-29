@@ -1,8 +1,12 @@
+#pragma once
+
 #include <Arduino.h>
 
 #include "soc/rtc.h"
 #include "driver/mcpwm.h"
 #include "soc/mcpwm_periph.h"
+
+#include "StatusLight.h"
 
 // Pin definition
 constexpr u_int8_t DRV_EN_PIN {38};
@@ -26,22 +30,15 @@ constexpr u_int8_t W_CUR_PIN {9};
 constexpr double SHUNT_RESISTANCE {0.1};
 constexpr double CURRENT_AMP {5.0};
 
-// Encoder SPI pins
-constexpr u_int8_t ENCODER_CLK {39};
-constexpr u_int8_t ENCODER_MISO {40};
-constexpr u_int8_t ENCODER_MOSI {41};
-constexpr u_int8_t ENCODER_CSN {42};
-
 // Lipo voltage
 constexpr u_int8_t LIPO_V_PIN {15};
 // Lipo Error LED
 constexpr u_int8_t LIPO_LED_PIN {4};
-// Status LED's
-constexpr u_int8_t STAT_1_LED_PIN {5};
-constexpr u_int8_t STAT_2_LED_PIN {6};
 
 // Motor Magnet Pole Count
 constexpr u_int32_t MAGNETIC_POLE_COUNTS {40};
+
+
 
   enum ControlMode {
     IDLE,
@@ -74,6 +71,7 @@ class MotorController {
     void setPhasePercentOutput(double uDutyPercent, double vDutyPercent, double wDutyPercent);
     void svpwmCommutation();
     void svpwmEncoderCommutation();
+    RotationDir getOutputDirection() {return (m_percentageOutput >=0) ? RotationDir::CW : RotationDir::CCW; }
 
     double mapf(double x, double in_min, double in_max, double out_min, double out_max) {
       return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
