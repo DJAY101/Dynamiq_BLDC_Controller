@@ -1,6 +1,8 @@
 #pragma once
 
 #include <Arduino.h>
+#include <functional>
+#include <array>
 
 #include "soc/rtc.h"
 #include "driver/mcpwm.h"
@@ -53,14 +55,16 @@ class MotorController {
   public:
 
     MotorController();
-    void init(); // Sets up the board pins to the correct INPUT / OUTPUT
-    void update(double encAngle, double encMag); // this needs to be in the main loop for the motor to update and spin
+    void init(std::function<double()> getAngle); // Sets up the board pins to the correct INPUT / OUTPUT
+    void update(double encMag); // this needs to be in the main loop for the motor to update and spin
     void setDriverEnable(bool enable);
     void setIdle(); // puts the driver into idle mode
     void openLoopPercentageOutput(double percentOutput); // uses SVPWM with no feedback loop from mag encoder
     void setOpenLoopPosition(double position, bool physicalShaftPos = false);
     void closedLoopPercentageOutput(double percentOutput); // Using encoder feedback to update the electrical theta
     void setClosedLoopPosition(double position);
+
+    void calibrate();
 
     double* getTestValue() { return &testValue; }
 
@@ -101,7 +105,10 @@ class MotorController {
     // Used by CLOSED_LOOP_POSITION control mode
     double m_targetPosition = 0.0;
 
-    double m_encoderAngle = 0.0;
+    std::function<double()> m_getAngle{nullptr};
+    double m_encoderAngle{0.0};
+    std::array<double, 360> m_angleErrorLUT{};
+    double m_encoderOffset{0.0};
 
     double m_torque = 0.0;
 

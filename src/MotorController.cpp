@@ -4,7 +4,9 @@ MotorController::MotorController() {
 
 }
 
-void MotorController::init() {
+void MotorController::init(std::function<double()> getAngle) {
+    m_getAngle = getAngle;
+
     // Driver enable pin
     pinMode(DRV_EN_PIN, OUTPUT);
 
@@ -152,6 +154,86 @@ void MotorController::setOpenLoopPosition(double position, bool physicalShaftPos
   m_targetElectricalPosition = position;
 }
 
+void MotorController::calibrate() {
+  Serial.println("Calibrating Encoder Offset...");
+  // Sum and count for averaging the encoder offset
+  double sum{0};
+  double count{0};
+
+  for (int i{0}; i < MAGNETIC_POLE_COUNTS / 2.0; i++) {
+    // Take 10 degree electrical theta jumps
+    for (double targetElectricalTheta{0}; targetElectricalTheta < 360; targetElectricalTheta += 5) {
+      // Find the trig ratio for the output between 0 - 100%
+      double targetElectricalThetaRad = targetElectricalTheta * M_PI / 180.0;
+      double U_duty = sin(targetElectricalThetaRad) * 50.0 + 50.0;
+      double V_duty = sin(targetElectricalThetaRad + 120.0 * M_PI / 180.0) * 50.0 + 50.0;
+      double W_duty = sin(targetElectricalThetaRad + 240.0 * M_PI / 180.0) * 50.0 + 50.0;
+    
+      constexpr double MAX_TORQUE{0.15};
+      setPhasePercentOutput(U_duty * MAX_TORQUE, V_duty * MAX_TORQUE, W_duty * MAX_TORQUE);
+      delay(3);
+
+      double encoderElecAng = fmod((m_getAngle() * MAGNETIC_POLE_COUNTS / 2.0), 360);
+      double error = targetElectricalTheta - encoderElecAng;
+      if (error < 0) {
+        error += 360;
+      }
+      sum += error;
+      count++;
+    }
+  }
+
+
+  Serial.print("Encoder Offset: ");
+  m_encoderOffset = sum / count;
+  Serial.println(m_encoderOffset);
+
+  Serial.println("Calibrating Encoder Eccentricty...");
+
+  double targetElectricalTheta {0};
+  double previousError{0};
+
+  for (int i{0}; i < 360; i++) {
+    sum = 0;
+    count = 0;
+    for (int j{0}; j < 20; j++) {
+      // Find the trig ratio for the output between 0 - 100%
+      double targetElectricalThetaRad = targetElectricalTheta * M_PI / 180.0;
+      double U_duty = sin(targetElectricalThetaRad) * 50.0 + 50.0;
+      double V_duty = sin(targetElectricalThetaRad + 120.0 * M_PI / 180.0) * 50.0 + 50.0;
+      double W_duty = sin(targetElectricalThetaRad + 240.0 * M_PI / 180.0) * 50.0 + 50.0;
+    
+      constexpr double MAX_TORQUE{0.15};
+      setPhasePercentOutput(U_duty * MAX_TORQUE, V_duty * MAX_TORQUE, W_duty * MAX_TORQUE);
+      delay(1);
+
+      double encoderElecAng = fmod((m_getAngle() * MAGNETIC_POLE_COUNTS / 2.0) + m_encoderOffset, 360);
+      double error = targetElectricalTheta - encoderElecAng;
+
+      targetElectricalTheta = fmod(targetElectricalTheta + 1, 360);
+      sum += error;
+      count++;
+    }
+
+    double averageError = sum / count;
+    // if the error is unreasonably large, use the previous error
+    int index = static_cast<int>(m_getAngle());
+    if (fabs(averageError) > 20) {
+      m_angleErrorLUT[index] = previousError;
+    } else {
+      m_angleErrorLUT[index] = averageError;
+    }
+    previousError = m_angleErrorLUT[i];
+  }
+
+  Serial.println("Calibration Complete!");
+  for (auto const& i : m_angleErrorLUT) {
+    Serial.print(">error:");
+    Serial.println(i);
+  }
+
+  setIdle();
+}
 
 // open loop svpwmCommutation
 void MotorController::svpwmCommutation() {
@@ -182,7 +264,7 @@ void MotorController::svpwmCommutation() {
   // assumes the electrical theta is now at the target (hence open loop control)
   m_electricalTheta = targetElectricalTheta;
   
-  double CA = fmod((m_encoderAngle * MAGNETIC_POLE_COUNTS / 2.0) + testValue, 360);
+  double CA = fmod((m_encoderAngle * MAGNETIC_POLE_COUNTS / 2.0) + m_encoderOffset + m_angleErrorLUT[static_cast<int>(m_encoderAngle)], 360);
   double EA = fmod(m_electricalTheta * 180.0 / M_PI, 360.0);
 
   Serial.print(">CA:");
@@ -191,23 +273,27 @@ void MotorController::svpwmCommutation() {
   Serial.print(">EA:");
   Serial.println(EA, 4);
 
+  Serial.print(">lutError:");
+  Serial.println(m_angleErrorLUT[static_cast<int>(m_encoderAngle)]);
+
   // unsigned long deltaTime = micros() - m_previousMillis;
   Serial.print(">EncAngle:");
   Serial.println(m_encoderAngle);
 
   // m_previousMillis = micros();
   // m_previousEnc = m_encoderAngle;
-  double diff = CA - EA;
+  double diff = EA - CA;
   if (fabs(diff) < 40) {
     Serial.print(">DIFF:");
     Serial.println(diff);
   }
 
-    std::array<double, 3> currentData = getPhaseCurrents();
-  Serial.print(">UDuty:");
-  Serial.println(U_duty);
-  Serial.print(">UDutyENC:");
-  Serial.println(sin(CA * M_PI / 180.0)*50+50);
+
+  // std::array<double, 3> currentData = getPhaseCurrents();
+  // Serial.print(">UDuty:");
+  // Serial.println(U_duty);
+  // Serial.print(">UDutyENC:");
+  // Serial.println(sin(CA * M_PI / 180.0)*50+50);
   
   // Serial.print(">U:");
   // Serial.println(currentData[0]);
@@ -236,8 +322,8 @@ void MotorController::svpwmEncoderCommutation() {
   // Set the electrical theta to the actual position taken from the encoder (closed loopiness comes in)
   // const double angleOffset = 130.0; // for motor with 130kv*
   // const double angleOffset = -90.0; // for motor with 90kV*
-  double angleOffset = testValue;
-  m_electricalTheta = fmod((m_encoderAngle * MAGNETIC_POLE_COUNTS / 2.0) + angleOffset, 360) * M_PI / 180.0; 
+  double angleOffset = m_encoderOffset;
+  m_electricalTheta = fmod((m_encoderAngle * MAGNETIC_POLE_COUNTS / 2.0) + angleOffset+ m_angleErrorLUT[static_cast<int>(m_encoderAngle)], 360) * M_PI / 180.0; 
 
   // The theta step should be 90 degrees from the magnet to ensure maximum torque and the direction depends on the torque sign
   m_electricalThetaStep = (m_torque >= 0) ? M_PI/2 : -M_PI/2;
@@ -267,8 +353,8 @@ void MotorController::svpwmEncoderCommutation() {
 
 
 
-void MotorController::update(double encAngle, double encMag) {
-  m_encoderAngle = encAngle;
+void MotorController::update(double encMag) {
+  m_encoderAngle = m_getAngle();
 
   // Serial.print(">Encoder Angle:");
   // Serial.println(m_encoderAngle, 4);
@@ -298,7 +384,7 @@ void MotorController::update(double encAngle, double encMag) {
       Serial.print(">Angle:");
       Serial.println(m_encoderAngle);
     }
-    StatusLight::getInstance().updateStatus(getOutputDirection(), m_percentageOutput);
+    // StatusLight::getInstance().updateStatus(getOutputDirection(), m_percentageOutput);
 
     svpwmEncoderCommutation();
   }

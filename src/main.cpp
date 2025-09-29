@@ -114,6 +114,9 @@ void executeSerialCommand(SerialManager* serialManager) {
         Serial.println("Serial Input Disabled...");
         disableSerialInput = true;
         break;
+    case 'c':
+        m_motorController->calibrate();
+        break;
     default: // optional
         Serial.println("No matching cmd");
   }
@@ -127,7 +130,7 @@ void setup() {
   setCpuFrequencyMhz(CPU_FREQ_MHZ);
   
   // Setup Driver Pins for the motor controller
-  m_motorController->init();
+  m_motorController->init([]() {return magEncoder.readAngleDegree();});
 
   // Start serial communication
   m_serialManager->init();
@@ -150,7 +153,7 @@ void loop() {
 
   double encoderAngle = magEncoder.readAngleDegree();
   
-  m_motorController->update(encoderAngle, magEncoder.readMagnitude());
+  m_motorController->update(magEncoder.readMagnitude());
   
 
   if (!disableSerialInput) {
